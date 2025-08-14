@@ -5,8 +5,8 @@ import { useAppContext, type ProducerInfo } from '../../context/AppContext';
 import { useNavigate } from 'react-router-dom';
 
 const schema = yup.object({
-  nombre: yup.string().required('El nombre es obligatorio'),
-  apellido: yup.string().required('El apellido es obligatorio'),
+  nombre: yup.string().required("El nombre es obligatorio"),
+  apellido: yup.string().required("El apellido es obligatorio"),
   documento: yup.string().optional(),
   telefono: yup.string().optional(),
   email: yup.string().email('Email inválido').optional(),
