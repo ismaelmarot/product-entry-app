@@ -56,3 +56,49 @@ npm install
 ```bash
 npm run dev
 ```
+Open your browser at http://localhost:5173
+
+---
+### Project Structure
+```bash
+product-entry-app/
+├─ src/
+│  ├─ components/     # React components (forms, product list, navigation)
+│  ├─ pages/          # Step-by-step pages
+│  ├─ context/        # App context for global state
+│  ├─ helpers/        # Utility functions
+│  └─ App.tsx         # Main app entry
+├─ public/            # Static assets
+├─ package.json
+└─ vite.config.ts
+```
+
+---
+
+###🤝 Contributing
+1. Fork the repository
+
+2. Create your feature branch (git checkout -b feature/my-feature)
+
+3. Commit your changes (git commit -m "feat: my new feature")
+
+4. Push to the branch (git push origin feature/my-feature)
+
+5. Open a Pull Request
+
+_Please follow the code style and naming conventions._
+
+---
+###Notes
+
+Make sure Node.js version is compatible (>=18.12)
+
+All added products are stored temporarily in app state
+
+Exported PDFs are generated using jsPDF
+
+---
+###License
+
+This project is licensed under the MIT License.
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
