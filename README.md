@@ -1,4 +1,4 @@
-# Product Entry App
+# Product Entry App 🛒
 
 A modern web application built with **React**, **TypeScript**, **Vite**, and **Bootstrap**, designed for managing product entries efficiently.
 
