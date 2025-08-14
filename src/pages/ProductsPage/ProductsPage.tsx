@@ -3,6 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useAppContext, type Product } from '../../context/AppContext';
 import { useNavigate } from 'react-router-dom';
+import { formatAmount } from '../../helpers/formatAmount';
 
 const schema = yup.object({
   codigo: yup.string().optional(),
