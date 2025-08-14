@@ -54,5 +54,5 @@ npm install
 
 ## Running the App
 ```bash
-npom run dev
+npm run dev
 ```
