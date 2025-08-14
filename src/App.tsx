@@ -15,11 +15,24 @@ function TopBar() {
   const next = idx >= 0 && idx < order.length - 1 ? order[idx + 1] : null;
 
   return (
-    <div className='d-flex align-items-center justify-content-between my-3'>
-      <h2 className='m-0'>Product Tabs App</h2>
-      <div className='d-flex gap-2'>
-        <button className='btn btn-secondary' disabled={!prev} onClick={() => prev && navigate(prev)}>Anterior</button>
-        <button className='btn btn-primary' disabled={!next} onClick={() => next && navigate(next)}>Siguiente</button>
+    <div className='row'>
+        <h2 className='col-sm-8'>Products Entry App</h2>
+      <div className='col-sm-4' style={{display: 'flex', justifyContent: 'flex-end'}}>
+        <button
+          className='btn btn-secondary'
+          style={{marginRight: '10px'}}
+          disabled={!prev}
+          onClick={() => prev && navigate(prev)}
+        >
+          Anterior
+        </button>
+        <button
+          className='btn btn-primary'
+          disabled={!next}
+          onClick={() => next && navigate(next)}
+        >
+          Siguiente
+        </button>
       </div>
     </div>
   );
