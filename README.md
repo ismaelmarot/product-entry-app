@@ -75,7 +75,7 @@ product-entry-app/
 
 ---
 
-###🤝 Contributing
+### 🤝 Contributing
 1. Fork the repository
 
 2. Create your feature branch (git checkout -b feature/my-feature)
@@ -89,7 +89,7 @@ product-entry-app/
 _Please follow the code style and naming conventions._
 
 ---
-###Notes
+### 📝 Notes
 
 Make sure Node.js version is compatible (>=18.12)
 
@@ -98,7 +98,7 @@ All added products are stored temporarily in app state
 Exported PDFs are generated using jsPDF
 
 ---
-###License
+### 📄 License
 
 This project is licensed under the MIT License.
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
