@@ -46,11 +46,13 @@ A modern web application built with **React**, **TypeScript**, **Vite**, and **B
 - npm or yarn
 
 ### Installation
-
 ```bash
 git clone https://github.com/ismaelmarot/product-entry-app.git
 cd product-entry-app
 npm install
+```
 
-
-
+## Running the App
+```bash
+npom run dev
+```
