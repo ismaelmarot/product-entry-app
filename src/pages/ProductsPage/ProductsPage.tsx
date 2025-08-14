@@ -3,14 +3,14 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useAppContext, type Product } from '../../context/AppContext';
 import { useNavigate } from 'react-router-dom';
-import { formatAmount } from '../../helpers/formatAmount';
+import formatAmount from '../../helpers/formatAmount';
 
 const schema = yup.object({
   codigo: yup.string().optional(),
-  detalle: yup.string().required('Detalle requerido'),
-  cantidad: yup.number().typeError('Número válido').positive('> 0').integer('Entero').required(),
-  costo: yup.number().typeError('Número válido').min(0, '>= 0').required(),
-  venta: yup.number().typeError('Número válido').min(0, '>= 0').required(),
+  detalle: yup.string().required("Detalle requerido"),
+  cantidad: yup.number().typeError("Número válido").positive("> 0").integer("Entero").required(),
+  costo: yup.number().typeError("Número válido").min(0, ">= 0").required(),
+  venta: yup.number().typeError("Número válido").min(0, ">= 0").required(),
 }).required();
 
 export default function ProductsPage() {
@@ -91,8 +91,8 @@ export default function ProductsPage() {
                   <td>{p.codigo || '-'}</td>
                   <td>{p.detalle}</td>
                   <td className="text-end">{p.cantidad}</td>
-                  <td className="text-end">{p.costo.toFixed(2)}</td>
-                  <td className="text-end">{p.venta.toFixed(2)}</td>
+                  <td className="text-end">{formatAmount(p.costo)}</td>
+                  <td className="text-end">{formatAmount(p.venta)}</td>
                   <td className="text-nowrap">
                     <button className="btn btn-sm btn-outline-danger" onClick={() => removeProduct(p.id)}>Eliminar</button>
                   </td>

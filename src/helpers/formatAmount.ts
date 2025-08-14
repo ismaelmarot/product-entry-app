@@ -5,7 +5,7 @@ function formatAmount(value: string | number): string {
 
     if (isNaN(number)) return '';
 
-    const fixed = number.toFixed(3);
+    const fixed = number.toFixed(2);
 
     const [intPart, decPart] = fixed.split('.');
 
