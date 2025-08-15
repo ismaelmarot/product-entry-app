@@ -2,8 +2,9 @@ import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { useAppContext } from '../../context/AppContext';
 import { useNavigate } from 'react-router-dom';
+import formatDate from '../../helpers/formatDate';
 
-export default function FinalPage() {
+function FinalPage() {
   const { general, producer, products, clearAll } = useAppContext();
   const navigate = useNavigate();
 
@@ -85,9 +86,9 @@ export default function FinalPage() {
               {general ? (
                 <ul className="mb-3">
                   <li><strong>Lugar:</strong> {general.lugar}</li>
-                  <li><strong>Fecha:</strong> {general.fecha}</li>
+                  <li><strong>Fecha:</strong> {formatDate(general.fecha)}</li>
                   <li><strong>Receptor:</strong> {general.receptor}</li>
-                  {general.otros && <li><strong>Otros:</strong> {general.otros}</li>}
+                  {general.otros && <li><strong>Nota:</strong> {general.otros}</li>}
                 </ul>
               ) : <p className="text-muted">No cargado</p>}
             </div>
@@ -115,10 +116,9 @@ export default function FinalPage() {
                   <tr>
                     <th>Detalle</th>
                     <th className="text-end">Cant.</th>
-                    <th className="text-end">Costo</th>
-                    <th className="text-end">Venta</th>
-                    <th className="text-end">Subcosto</th>
-                    <th className="text-end">Subventa</th>
+                    <th className="text-end">Código</th>
+                    <th className="text-end">$ Costo</th>
+                    <th className="text-end">$ Venta</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -126,10 +126,11 @@ export default function FinalPage() {
                     <tr key={p.id}>
                       <td>{p.detalle}</td>
                       <td className="text-end">{p.cantidad}</td>
+                      <td className='text-end'>{p.codigo}</td>
                       <td className="text-end">{p.costo.toFixed(2)}</td>
                       <td className="text-end">{p.venta.toFixed(2)}</td>
-                      <td className="text-end">{(p.cantidad * p.costo).toFixed(2)}</td>
-                      <td className="text-end">{(p.cantidad * p.venta).toFixed(2)}</td>
+                      {/* <td className="text-end">{(p.cantidad * p.costo).toFixed(2)}</td>
+                      <td className="text-end">{(p.cantidad * p.venta).toFixed(2)}</td> */}
                     </tr>
                   ))}
                 </tbody>
@@ -148,3 +149,5 @@ export default function FinalPage() {
     </div>
   );
 }
+
+export default FinalPage;

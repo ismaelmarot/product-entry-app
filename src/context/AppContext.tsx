@@ -18,7 +18,7 @@ export type ProducerInfo = {
 
 export type Product = {
   id: string;
-  codigo: string;
+  codigo?: string;
   detalle: string;
   cantidad: number;
   costo: number;
