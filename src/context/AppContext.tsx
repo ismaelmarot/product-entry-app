@@ -3,9 +3,9 @@ import { v4 as uuidv4 } from 'uuid';
 
 export type GeneralInfo = {
   lugar: string;
-  fecha: string;   // yyyy-mm-dd
+  fecha: string; // yyyy-mm-dd
   receptor: string;
-  otros?: string;
+  otros?: string | undefined;
 };
 
 export type ProducerInfo = {
@@ -79,6 +79,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
 export function useAppContext() {
   const ctx = useContext(Ctx);
-  if (!ctx) throw new Error('useAppContext must be used inside AppProvider');
+  if (!ctx) throw new Error("useAppContext must be used inside AppProvider");
   return ctx;
 }
