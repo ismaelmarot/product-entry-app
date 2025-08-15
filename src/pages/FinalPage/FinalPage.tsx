@@ -232,7 +232,7 @@ function FinalPage() {
       {/* Confirmation Modal */}
       <ConfirmDeleteModal
         show={showConfirm}
-        title="Reiniciar datos"
+        title="Borrar datos"
         message="¿Está seguro de que desea reiniciar? Se perderá toda la información."
         confirmText="Sí, reiniciar"
         cancelText="Cancelar"
