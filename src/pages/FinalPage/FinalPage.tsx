@@ -18,7 +18,7 @@ function FinalPage() {
     const doc = new jsPDF();
 
     doc.setFontSize(14);
-    doc.text('Listado de productos', 14, 16);
+    doc.text("Listado de productos", 14, 16);
 
     const lines: string[] = [];
     if (general) {
@@ -49,7 +49,7 @@ function FinalPage() {
 
     autoTable(doc, {
       startY: y + 2,
-      head: [['Detalle', 'Cant.', 'Costo', 'Venta', 'Subcosto', 'Subventa']],
+      head: [["Detalle", "Cant.", "Costo", "Venta", "Subcosto", "Subventa"]],
       body: products.map(p => [
         p.detalle,
         String(p.cantidad),
@@ -82,61 +82,61 @@ function FinalPage() {
   }
 
   return (
-    <div className="mt-3">
+    <div className='mt-3'>
       <h3>Página 4 — Final / Imprimir / PDF</h3>
 
       {!general && (
-        <div className="alert alert-warning">
+        <div className='alert alert-warning'>
           Falta completar la Información general (Paso 1).
         </div>
       )}
       {!producer && (
-        <div className="alert alert-warning">
+        <div className='alert alert-warning'>
           Faltan Datos del productor (Paso 2).
         </div>
       )}
       {products.length === 0 && (
-        <div className="alert alert-info">No hay productos (Paso 3).</div>
+        <div className='alert alert-info'>No hay productos (Paso 3).</div>
       )}
 
-      <div className="mb-3 d-flex gap-2">
+      <div className='mb-3 d-flex gap-2'>
         <button
-          className="btn btn-secondary"
+          className='btn btn-secondary'
           onClick={() => navigate('/productos')}
         >
           Volver a productos
         </button>
         <button
-          className="btn btn-success"
+          className='btn btn-success'
           onClick={exportPDF}
           disabled={!general || !producer || products.length === 0}
         >
           Descargar PDF
         </button>
         <button
-          className="btn btn-outline-secondary"
+          className='btn btn-outline-secondary'
           onClick={() => window.print()}
           disabled={!general || !producer || products.length === 0}
         >
           Imprimir
         </button>
         <button
-          className="btn btn-outline-danger"
+          className='btn btn-outline-danger'
           onClick={() => setShowConfirm(true)}
         >
           Reiniciar
         </button>
       </div>
 
-      <div className="card">
-        <div className="card-body">
-          <h5 className="card-title">Resumen</h5>
+      <div className='card'>
+        <div className='card-body'>
+          <h5 className='card-title'>Resumen</h5>
 
-          <div className="row">
-            <div className="col-md-6">
+          <div className='row'>
+            <div className='col-md-6'>
               <h6>Información general</h6>
               {general ? (
-                <ul className="mb-3">
+                <ul className='mb-3'>
                   <li>
                     <strong>Lugar:</strong> {general.lugar}
                   </li>
@@ -153,13 +153,13 @@ function FinalPage() {
                   )}
                 </ul>
               ) : (
-                <p className="text-muted">No cargado</p>
+                <p className='text-muted'>No cargado</p>
               )}
             </div>
-            <div className="col-md-6">
+            <div className='col-md-6'>
               <h6>Datos del productor</h6>
               {producer ? (
-                <ul className="mb-3">
+                <ul className='mb-3'>
                   <li>
                     <strong>Nombre:</strong> {producer.nombre}
                   </li>
@@ -183,44 +183,44 @@ function FinalPage() {
                   )}
                 </ul>
               ) : (
-                <p className="text-muted">No cargado</p>
+                <p className='text-muted'>No cargado</p>
               )}
             </div>
           </div>
 
           <h6>Productos</h6>
           {products.length === 0 ? (
-            <p className="text-muted">Sin productos.</p>
+            <p className='text-muted'>Sin productos.</p>
           ) : (
-            <div className="table-responsive">
-              <table className="table table-sm">
+            <div className='table-responsive'>
+              <table className='table table-sm'>
                 <thead>
                   <tr>
                     <th>Detalle</th>
-                    <th className="text-end">Cant.</th>
-                    <th className="text-end">Código</th>
-                    <th className="text-end">$ Costo</th>
-                    <th className="text-end">$ Venta</th>
+                    <th className='text-end'>Cant.</th>
+                    <th className='text-end'>Código</th>
+                    <th className='text-end'>$ Costo</th>
+                    <th className='text-end'>$ Venta</th>
                   </tr>
                 </thead>
                 <tbody>
                   {products.map(p => (
                     <tr key={p.id}>
                       <td>{p.detalle}</td>
-                      <td className="text-end">{p.cantidad}</td>
-                      <td className="text-end">{p.codigo}</td>
-                      <td className="text-end">{p.costo.toFixed(2)}</td>
-                      <td className="text-end">{p.venta.toFixed(2)}</td>
+                      <td className='text-end'>{p.cantidad}</td>
+                      <td className='text-end'>{p.codigo}</td>
+                      <td className='text-end'>{p.costo.toFixed(2)}</td>
+                      <td className='text-end'>{p.venta.toFixed(2)}</td>
                     </tr>
                   ))}
                 </tbody>
                 <tfoot>
                   <tr>
-                    <th colSpan={4} className="text-end">
+                    <th colSpan={4} className='text-end'>
                       Totales
                     </th>
-                    <th className="text-end">{totalCosto.toFixed(2)}</th>
-                    <th className="text-end">{totalVenta.toFixed(2)}</th>
+                    <th className='text-end'>{totalCosto.toFixed(2)}</th>
+                    <th className='text-end'>{totalVenta.toFixed(2)}</th>
                   </tr>
                 </tfoot>
               </table>
