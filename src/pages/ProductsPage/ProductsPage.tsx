@@ -31,7 +31,7 @@ export default function ProductsPage() {
     <div className='mt-3'>
       <h3>Página 3 — Productos</h3>
 
-      <form onSubmit={handleSubmit(onAdd)} className='row g-3 mt-1'>
+      <form onSubmit={handleSubmit(onAdd)} className='row g-3 mt-1' style={{ border:'1px solid rgba(153, 161, 175, 1', padding: '1rem', borderRadius:'.2rem' }}>
         <div className='col-md-12'>
           <label className='form-label'>Detalle</label>
           <input className='form-control' {...register('detail')} />
@@ -77,9 +77,9 @@ export default function ProductsPage() {
           <table className='table align-middle'>
             <thead>
               <tr>
-                <th>Código</th>
                 <th>Detalle</th>
                 <th className='text-end'>Cantidad</th>
+                <th className='text-end'>Código</th>
                 <th className='text-end'>$ Costo</th>
                 <th className='text-end'>$ Venta</th>
                 <th></th>
@@ -88,9 +88,9 @@ export default function ProductsPage() {
             <tbody>
               {products.map(p => (
                 <tr key={p.id}>
-                  <td>{p.code || '-'}</td>
                   <td>{p.detail}</td>
                   <td className='text-end'>{p.amount}</td>
+                  <td className='text-end'>{p.code || '-'}</td>
                   <td className='text-end'>{formatAmount(p.cost_price)}</td>
                   <td className='text-end'>{formatAmount(p.sale_price)}</td>
                   <td className='text-nowrap'>
@@ -105,3 +105,5 @@ export default function ProductsPage() {
     </div>
   );
 }
+
+
