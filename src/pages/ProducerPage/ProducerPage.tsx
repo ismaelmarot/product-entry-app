@@ -27,35 +27,35 @@ export default function ProducerPage() {
   };
 
   return (
-    <div className="mt-3">
+    <div className='mt-3'>
       <h3>Página 2 — Datos del productor</h3>
-      <form onSubmit={handleSubmit(onSubmit)} className="row g-3 mt-1">
-        <div className="col-md-4">
-          <label className="form-label">Nombre</label>
-          <input className="form-control" {...register('nombre')} />
-          {errors.nombre && <div className="text-danger small">{errors.nombre.message}</div>}
+      <form onSubmit={handleSubmit(onSubmit)} className='row g-3 mt-1'>
+        <div className='col-md-4'>
+          <label className='form-label'>Nombre</label>
+          <input className='form-control' {...register('nombre')} />
+          {errors.nombre && <div className='text-danger small'>{errors.nombre.message}</div>}
         </div>
-        <div className="col-md-4">
-          <label className="form-label">Apellido</label>
-          <input className="form-control" {...register('apellido')} />
-          {errors.apellido && <div className="text-danger small">{errors.apellido.message}</div>}
+        <div className='col-md-4'>
+          <label className='form-label'>Apellido</label>
+          <input className='form-control' {...register('apellido')} />
+          {errors.apellido && <div className='text-danger small'>{errors.apellido.message}</div>}
         </div>
-        <div className="col-md-4">
-          <label className="form-label">Documento</label>
-          <input className="form-control" {...register('documento')} />
+        <div className='col-md-4'>
+          <label className='form-label'>Documento</label>
+          <input className='form-control' {...register('documento')} />
         </div>
-        <div className="col-md-4">
-          <label className="form-label">Teléfono</label>
-          <input className="form-control" {...register('telefono')} />
+        <div className='col-md-4'>
+          <label className='form-label'>Teléfono</label>
+          <input className='form-control' {...register('telefono')} />
         </div>
-        <div className="col-md-4">
-          <label className="form-label">Email</label>
-          <input type="email" className="form-control" {...register('email')} />
+        <div className='col-md-4'>
+          <label className='form-label'>Email</label>
+          <input type='email' className='form-control' {...register('email')} />
           {errors.email && <div className="text-danger small">{errors.email.message}</div>}
         </div>
-        <div className="col-12 d-flex justify-content-between">
-          <button className="btn btn-secondary" type="button" onClick={() => navigate('/general')}>Anterior</button>
-          <button className="btn btn-primary" type="submit">Siguiente</button>
+        <div className='col-12 d-flex justify-content-between'>
+          <button className='btn btn-secondary' type='button' onClick={() => navigate('/general')}>Anterior</button>
+          <button className='btn btn-primary' type='submit'>Siguiente</button>
         </div>
       </form>
     </div>
