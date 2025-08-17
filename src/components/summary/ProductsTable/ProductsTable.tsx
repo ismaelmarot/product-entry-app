@@ -40,3 +40,4 @@ function ProductsTable({ products, total_cost, total_sell }: ProductsTableProps)
 }
 
 export default ProductsTable;
+
