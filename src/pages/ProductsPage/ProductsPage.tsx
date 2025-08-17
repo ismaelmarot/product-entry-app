@@ -8,9 +8,9 @@ import formatAmount from '../../helpers/formatAmount';
 const schema = yup.object({
   code: yup.string().optional(),
   detail: yup.string().required("Detalle requerido"),
-  amount: yup.number().typeError("Número válido").positive("> 0").integer("Entero").required(),
-  cost_price: yup.number().typeError("Número válido").min(0, ">= 0").required(),
-  sale_price: yup.number().typeError("Número válido").min(0, ">= 0").required(),
+  amount: yup.number().typeError("Número válido").positive('> 0').integer("Entero").required(),
+  cost_price: yup.number().typeError("Número válido").min(0, '>= 0').required(),
+  sale_price: yup.number().typeError("Número válido").min(0, '>= 0').required(),
 }).required();
 
 export default function ProductsPage() {
