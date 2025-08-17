@@ -93,7 +93,7 @@ export default function ProductsPage() {
                   <td className='text-end'>{p.code || '-'}</td>
                   <td className='text-end'>{formatAmount(p.cost_price)}</td>
                   <td className='text-end'>{formatAmount(p.sale_price)}</td>
-                  <td className='text-nowrap'>
+                  <td className='text-nowrap text-end'>
                     <button className='btn btn-sm btn-outline-danger' onClick={() => removeProduct(p.id)}>Eliminar</button>
                   </td>
                 </tr>

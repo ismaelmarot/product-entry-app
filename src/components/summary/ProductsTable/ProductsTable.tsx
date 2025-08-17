@@ -1,3 +1,4 @@
+import formatAmount from '../../../helpers/formatAmount';
 import type { ProductsTableProps } from '../../../interface/ProductsTableProps';
 
 function ProductsTable({ products, total_cost, total_sell }: ProductsTableProps) {
@@ -21,16 +22,16 @@ function ProductsTable({ products, total_cost, total_sell }: ProductsTableProps)
               <td>{p.detail}</td>
               <td className='text-end'>{p.amount}</td>
               <td className='text-end'>{p.code}</td>
-              <td className='text-end'>{p.cost_price.toFixed(2)}</td>
-              <td className='text-end'>{p.sale_price.toFixed(2)}</td>
+              <td className='text-end'>{formatAmount(p.cost_price)}</td>
+              <td className='text-end'>{formatAmount(p.sale_price)}</td>
             </tr>
           ))}
         </tbody>
         <tfoot>
           <tr>
             <th colSpan={3} className='text-end'>Totales</th>
-            <th className='text-end'>{total_cost.toFixed(2)}</th>
-            <th className='text-end'>{total_sell.toFixed(2)}</th>
+            <th className='text-end'>{formatAmount(total_cost)}</th>
+            <th className='text-end'>{formatAmount(total_sell)}</th>
           </tr>
         </tfoot>
       </table>
