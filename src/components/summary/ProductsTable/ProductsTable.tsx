@@ -1,42 +1,36 @@
-import type { ProductProps } from '../../../interface/ProductProps';
+import type { ProductsTableProps } from '../../../interface/ProductsTableProps';
 
-interface Props {
-  products: ProductProps[];
-  totalCosto: number;
-  totalVenta: number;
-}
-
-function ProductsTable({ products, totalCosto, totalVenta }: Props) {
+function ProductsTable({ products, total_cost, total_sell }: ProductsTableProps) {
   return products.length === 0 ? (
-    <p className="text-muted">Sin productos.</p>
+    <p className='text-muted'>Sin productos.</p>
   ) : (
-    <div className="table-responsive">
-      <table className="table table-sm">
+    <div className='table-responsive'>
+      <table className='table table-sm'>
         <thead>
           <tr>
             <th>Detalle</th>
-            <th className="text-end">Cant.</th>
-            <th className="text-end">Código</th>
-            <th className="text-end">$ Costo</th>
-            <th className="text-end">$ Venta</th>
+            <th className='text-end'>Cant.</th>
+            <th className='text-end'>Código</th>
+            <th className='text-end'>$ Costo</th>
+            <th className='text-end'>$ Venta</th>
           </tr>
         </thead>
         <tbody>
           {products.map(p => (
             <tr key={p.id}>
-              <td>{p.detalle}</td>
-              <td className="text-end">{p.cantidad}</td>
-              <td className="text-end">{p.codigo}</td>
-              <td className="text-end">{p.costo.toFixed(2)}</td>
-              <td className="text-end">{p.venta.toFixed(2)}</td>
+              <td>{p.detail}</td>
+              <td className='text-end'>{p.amount}</td>
+              <td className='text-end'>{p.code}</td>
+              <td className='text-end'>{p.cost_price.toFixed(2)}</td>
+              <td className='text-end'>{p.sale_price.toFixed(2)}</td>
             </tr>
           ))}
         </tbody>
         <tfoot>
           <tr>
-            <th colSpan={3} className="text-end">Totales</th>
-            <th className="text-end">{totalCosto.toFixed(2)}</th>
-            <th className="text-end">{totalVenta.toFixed(2)}</th>
+            <th colSpan={3} className='text-end'>Totales</th>
+            <th className='text-end'>{total_cost.toFixed(2)}</th>
+            <th className='text-end'>{total_sell.toFixed(2)}</th>
           </tr>
         </tfoot>
       </table>

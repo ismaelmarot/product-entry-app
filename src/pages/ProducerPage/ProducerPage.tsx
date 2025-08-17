@@ -51,7 +51,7 @@ export default function ProducerPage() {
         <div className='col-md-4'>
           <label className='form-label'>Email</label>
           <input type='email' className='form-control' {...register('email')} />
-          {errors.email && <div className="text-danger small">{errors.email.message}</div>}
+          {errors.email && <div className='text-danger small'>{errors.email.message}</div>}
         </div>
         <div className='col-12 d-flex justify-content-between'>
           <button className='btn btn-secondary' type='button' onClick={() => navigate('/general')}>Anterior</button>

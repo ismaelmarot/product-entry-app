@@ -12,8 +12,8 @@ function FinalPage() {
   const navigate = useNavigate();
   const [showConfirm, setShowConfirm] = useState(false);
 
-  const totalCosto = products.reduce((a, p) => a + p.cantidad * p.costo, 0);
-  const totalVenta = products.reduce((a, p) => a + p.cantidad * p.venta, 0);
+  const totalCosto = products.reduce((a, p) => a + p.amount * p.cost_price, 0);
+  const totalVenta = products.reduce((a, p) => a + p.amount * p.sale_price, 0);
 
   function handleReiniciar() {
     clearAll();
@@ -63,7 +63,7 @@ function FinalPage() {
             <ProducerInfoCard producer={producer} />
           </div>
           <h6>Productos</h6>
-          <ProductsTable products={products} totalCosto={totalCosto} totalVenta={totalVenta} />
+          <ProductsTable products={products} total_cost={totalCosto} total_sell={totalVenta} />
         </div>
       </div>
 

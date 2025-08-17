@@ -18,11 +18,11 @@ export type ProducerInfo = {
 
 export type Product = {
   id: string;
-  codigo?: string;
-  detalle: string;
-  cantidad: number;
-  costo: number;
-  venta: number;
+  code?: string;
+  detail: string;
+  amount: number;
+  cost_price: number;
+  sale_price: number;
 };
 
 type AppState = {

@@ -46,12 +46,12 @@ export default function exportPDF(
     startY: y + 2,
     head: [["Detalle", "Cant.", "Costo", "Venta", "Subcosto", "Subventa"]],
     body: products.map(p => [
-      p.detalle,
-      String(p.cantidad),
-      p.costo.toFixed(2),
-      p.venta.toFixed(2),
-      (p.cantidad * p.costo).toFixed(2),
-      (p.cantidad * p.venta).toFixed(2)
+      p.detail,
+      String(p.amount),
+      p.cost_price.toFixed(2),
+      p.sale_price.toFixed(2),
+      (p.amount * p.cost_price).toFixed(2),
+      (p.amount * p.sale_price).toFixed(2)
     ]),
     styles: { fontSize: 9 },
     headStyles: { fillColor: [33, 37, 41] }
