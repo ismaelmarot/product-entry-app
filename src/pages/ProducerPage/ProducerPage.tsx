@@ -42,7 +42,16 @@ export default function ProducerPage() {
         </div>
         <div className='col-md-4'>
           <label className='form-label'>Documento</label>
-          <input className='form-control' {...register('documento')} />
+          <input
+            className='form-control'
+            {...register('documento')}
+            inputMode='numeric' 
+            pattern='\d*'
+            maxLength={8}
+            onInput={(e) => {
+              e.currentTarget.value = e.currentTarget.value.replace(/\D/g, '');
+            }}
+          />
         </div>
         <div className='col-md-4'>
           <label className='form-label'>Teléfono</label>

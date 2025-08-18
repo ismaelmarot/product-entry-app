@@ -6,6 +6,7 @@ import GeneralInfoCard from '../../components/summary/GeneralInfoCard/GeneralInf
 import ProducerInfoCard from '../../components/summary/ProducerInfoCard/ProducerInfoCard';
 import ProductsTable from '../../components/summary/ProductsTable/ProductsTable';
 import exportPDF from '../../helpers/exportPDF';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 function FinalPage() {
   const { general, producer, products, clearAll } = useAppContext();
@@ -30,17 +31,20 @@ function FinalPage() {
       {products.length === 0 && <div className='alert alert-info'>No hay productos (Paso 3).</div>}
 
       <div className='mb-3 d-flex gap-2'>
-        <button className='btn btn-secondary' onClick={() => navigate('/productos')}>
-          Volver a productos
+        <button className='btn btn-secondary d-flex align-items-center' onClick={() => navigate('/productos')}>
+          <i className='bi bi-backspace'></i>
+          <span className='ms-2 d-none d-sm-inline'>Volver a productos</span>
         </button>
         <button
           className='btn btn-success'
           onClick={() => exportPDF(general, producer, products, totalCosto, totalVenta)}
           disabled={!general || !producer || products.length === 0}
         >
-          Descargar PDF
+          <i className='bi bi-download'></i>
+          <span className='ms-2 d-none d-sm-inline'>Descargar PDF</span>
         </button>
         <button
+          className='btn btn-warning'
           onClick={() => {
             const blob = exportPDF(general, producer, products, totalCosto, totalVenta, { returnBlob: true });
             if (!blob) return;
@@ -51,13 +55,16 @@ function FinalPage() {
             }
           }}
         >
-          Imprimir
+          <i className='bi bi-printer'></i>
+          <span className='ms-2 d-none d-sm-inline'>Imprimir</span>
         </button>
         <button
-          className='btn btn-outline-danger'
+          className='btn btn-danger'
           onClick={() => setShowConfirm(true)}
         >
-          Reiniciar
+          <i className='bi bi-x-circle'></i>
+          <span className='ms-2 d-none d-sm-inline'>Reiniciar</span>
+          
         </button>
       </div>
 

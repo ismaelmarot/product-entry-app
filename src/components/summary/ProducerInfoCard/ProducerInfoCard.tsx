@@ -1,5 +1,5 @@
 import type { ProducerInfoProps } from '../../../interface/ProducerInfoProps';
-
+import { formatDocumentoId } from '../../../helpers/formatDocumentId';
 interface Props {
   producer: ProducerInfoProps | null;
 }
@@ -12,7 +12,7 @@ function ProducerInfoCard({ producer }: Props) {
         <ul className='mb-3'>
           <li><strong>Nombre:</strong> {producer.nombre}</li>
           <li><strong>Apellido:</strong> {producer.apellido}</li>
-          {producer.documento && <li><strong>Documento:</strong> {producer.documento}</li>}
+          {producer.documento && <li><strong>Documento:</strong> {formatDocumentoId(producer.documento)}</li>}
           {producer.telefono && <li><strong>Teléfono:</strong> {producer.telefono}</li>}
           {producer.email && <li><strong>Email:</strong> {producer.email}</li>}
         </ul>
