@@ -28,7 +28,7 @@ function ProductsTable({ products, total_cost, total_sell }: ProductsTableProps)
           ))}
         </tbody>
         <tfoot>
-          <tr>
+          <tr style={{border:'3px solid'}}>
             <th colSpan={3} className='text-end'>Totales</th>
             <th className='text-end'>{formatAmount(total_cost)}</th>
             <th className='text-end'>{formatAmount(total_sell)}</th>

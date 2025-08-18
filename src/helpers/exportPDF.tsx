@@ -3,6 +3,7 @@ import autoTable from 'jspdf-autotable';
 import type { GeneralInfoProps } from '../interface/GeneralInfoProps';
 import type { ProducerInfoProps } from '../interface/ProducerInfoProps';
 import type { ProductProps } from '../interface/ProductProps';
+import formatAmount from './formatAmount';
 
 function exportPDF(
   general: GeneralInfoProps | null,
@@ -45,24 +46,30 @@ function exportPDF(
 
   autoTable(doc, {
     startY: y + 2,
-    head: [["Detalle", "Cant.", "Costo", "Venta", "Subcosto", "Subventa"]],
+    head: [["Detalle", "Cant.", "Código", "$ Costo", "$ Venta"]],
     body: products.map(p => [
       p.detail,
       String(p.amount),
-      p.cost_price.toFixed(2),
-      p.sale_price.toFixed(2),
-      (p.amount * p.cost_price).toFixed(2),
-      (p.amount * p.sale_price).toFixed(2)
+      String(p.code),
+      formatAmount(p.cost_price),
+      formatAmount(p.sale_price),
     ]),
     styles: { fontSize: 9 },
-    headStyles: { fillColor: [33, 37, 41] }
+    headStyles: { fillColor: [33, 37, 41] },
+    columnStyles: {
+      1: { halign: 'right' },
+      2: { halign: 'right' },
+      3: { halign: 'right' },
+      4: { halign: 'right' },
+      5: { halign: 'right' }
+    }
   });
 
   autoTable(doc, {
     startY: (doc as any).lastAutoTable.finalY + 6,
     body: [
-      ['Total costo', totalCosto.toFixed(2)],
-      ['Total venta', totalVenta.toFixed(2)]
+      ['Total costo', formatAmount(totalCosto)],
+      ['Total venta', formatAmount(totalVenta)]
     ],
     theme: 'plain',
     styles: { fontSize: 11 }
