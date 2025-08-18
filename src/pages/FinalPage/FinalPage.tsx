@@ -43,6 +43,7 @@ function FinalPage() {
         <button
           onClick={() => {
             const blob = exportPDF(general, producer, products, totalCosto, totalVenta, { returnBlob: true });
+            if (!blob) return;
             const url = URL.createObjectURL(blob);
             const win = window.open(url);
             if (win) {
