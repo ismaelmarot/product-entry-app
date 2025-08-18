@@ -24,7 +24,10 @@ export default function ProductsPage() {
   });
 
   const onAdd = (data: Omit<Product, 'id'>) => {
-    addProduct({ ...data });
+    const formattedDetail =
+      data.detail.charAt(0).toUpperCase() + data.detail.slice(1);
+
+     addProduct({ ...data, detail: formattedDetail });
     reset({ code: '', detail: '', amount: 1, cost_price: 0, sale_price: 0 });
   };
 
