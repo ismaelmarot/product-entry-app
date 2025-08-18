@@ -40,13 +40,29 @@ function FinalPage() {
         >
           Descargar PDF
         </button>
-        <button
+        {/* <button
           className='btn btn-outline-secondary'
           onClick={() => window.print()}
           disabled={!general || !producer || products.length === 0}
         >
           Imprimir
-        </button>
+        </button> */}
+
+
+<button
+  onClick={() => {
+    const blob = exportPDF(general, producer, products, totalCosto, totalVenta, { returnBlob: true });
+    const url = URL.createObjectURL(blob);
+    const win = window.open(url);
+    if (win) {
+      win.onload = () => win.print();
+    }
+  }}
+>
+  Imprimir
+</button>
+
+
         <button
           className='btn btn-outline-danger'
           onClick={() => setShowConfirm(true)}
