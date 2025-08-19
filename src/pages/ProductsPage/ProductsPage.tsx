@@ -1,10 +1,9 @@
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useAppContext, type Product } from '../../context/AppContext';
 import { useNavigate } from 'react-router-dom';
-import formatAmount from '../../helpers/formatAmount';
+import ProductsTable from '../../components/summary/ProductsTable/ProductsTable';
 
 const schema = yup.object({
   code: yup.string().optional(),
@@ -17,55 +16,22 @@ const schema = yup.object({
 export default function ProductsPage() {
   const { products, addProduct, removeProduct } = useAppContext();
   const navigate = useNavigate();
-
   const { register, handleSubmit, reset, formState: { errors } } = useForm<Omit<Product, 'id'>>({
     resolver: yupResolver(schema),
     defaultValues: { code: '', detail: '', amount: 1, cost_price: 0, sale_price: 0 }
   });
 
   const onAdd = (data: Omit<Product, 'id'>) => {
-    const formattedDetail =
-      data.detail.charAt(0).toUpperCase() + data.detail.slice(1);
-
-     addProduct({ ...data, detail: formattedDetail });
+    addProduct({ ...data, detail: data.detail.charAt(0).toUpperCase() + data.detail.slice(1) });
     reset({ code: '', detail: '', amount: 1, cost_price: 0, sale_price: 0 });
   };
 
-  // Estados para ordenar
-  const [sortColumn, setSortColumn] = useState<string | null>(null);
-  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
-
-  const handleSort = (column: string) => {
-    if (sortColumn === column) {
-      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
-    } else {
-      setSortColumn(column);
-      setSortDirection('asc');
-    }
-  };
-
-  // Ordenar productos según columna y dirección
-  const sortedProducts = [...products].sort((a, b) => {
-    if (!sortColumn) return 0;
-
-    let aValue: string | number = (a as any)[sortColumn];
-    let bValue: string | number = (b as any)[sortColumn];
-
-    // Para strings, comparar en minúsculas
-    if (typeof aValue === 'string') {
-      aValue = aValue.toLowerCase();
-      bValue = (bValue as string).toLowerCase();
-    }
-
-    if (aValue < bValue) return sortDirection === 'asc' ? -1 : 1;
-    if (aValue > bValue) return sortDirection === 'asc' ? 1 : -1;
-    return 0;
-  });
+  const totalCosto = products.reduce((a, p) => a + p.amount * p.cost_price, 0);
+  const totalVenta = products.reduce((a, p) => a + p.amount * p.sale_price, 0);
 
   return (
     <div className='mt-3'>
       <h3>Página 3 — Productos</h3>
-
       <form onSubmit={handleSubmit(onAdd)} className='row g-3 mt-1' style={{ border:'1px solid rgba(153, 161, 175, 1', padding: '1rem', borderRadius:'.2rem' }}>
         <div className='col-md-12'>
           <label className='form-label'>Detalle</label>
@@ -74,11 +40,7 @@ export default function ProductsPage() {
         </div>
         <div className='col-md-3'>
           <label className='form-label'>Código (opcional)</label>
-          <input
-            className='form-control'
-            {...register('code')}
-            onChange={(e) => { e.target.value = e.target.value.toUpperCase(); }}
-          />
+          <input className='form-control' {...register('code')} onChange={e => { e.target.value = e.target.value.toUpperCase(); }} />
         </div>
         <div className='col-md-3'>
           <label className='form-label'>Cantidad</label>
@@ -103,50 +65,9 @@ export default function ProductsPage() {
       </form>
 
       <hr className='my-4' />
-
       <h5>Lista de productos</h5>
-      {products.length === 0 ? (
-        <div className='alert alert-info'>No hay productos cargados.</div>
-      ) : (
-        <div className='table-responsive'>
-          <table className='table align-middle w-100'>
-            <thead>
-              <tr>
-                <th style={{ cursor: 'pointer' }} onClick={() => handleSort('detail')}>
-                  Detalle {sortColumn === 'detail' ? (sortDirection === 'asc' ? '↑' : '↓') : ''}
-                </th>
-                <th className='text-end' style={{ cursor: 'pointer' }} onClick={() => handleSort('amount')}>
-                  Cant. {sortColumn === 'amount' ? (sortDirection === 'asc' ? '↑' : '↓') : ''}
-                </th>
-                <th className='text-end' style={{ cursor: 'pointer' }} onClick={() => handleSort('code')}>
-                  Código {sortColumn === 'code' ? (sortDirection === 'asc' ? '↑' : '↓') : ''}
-                </th>
-                <th className='text-end' style={{ cursor: 'pointer' }} onClick={() => handleSort('cost_price')}>
-                  $ Costo {sortColumn === 'cost_price' ? (sortDirection === 'asc' ? '↑' : '↓') : ''}
-                </th>
-                <th className='text-end' style={{ cursor: 'pointer' }} onClick={() => handleSort('sale_price')}>
-                  $ Venta {sortColumn === 'sale_price' ? (sortDirection === 'asc' ? '↑' : '↓') : ''}
-                </th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {sortedProducts.map(p => (
-                <tr key={p.id}>
-                  <td>{p.detail}</td>
-                  <td className='text-end'>{p.amount}</td>
-                  <td className='text-end'>{p.code || '-'}</td>
-                  <td className='text-end'>{formatAmount(p.cost_price)}</td>
-                  <td className='text-end'>{formatAmount(p.sale_price)}</td>
-                  <td className='text-nowrap text-end'>
-                    <button className='btn btn-sm btn-outline-danger' onClick={() => removeProduct(p.id)}>Eliminar</button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+      <ProductsTable products={products} total_cost={totalCosto} total_sell={totalVenta} />
     </div>
   );
 }
+

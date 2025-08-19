@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppContext } from '../../context/AppContext';
+import { useAppContext, type Product } from '../../context/AppContext';
 import ConfirmDeleteModal from '../../components/common/ConfirmDeleteModal';
 import GeneralInfoCard from '../../components/summary/GeneralInfoCard/GeneralInfoCard';
 import ProducerInfoCard from '../../components/summary/ProducerInfoCard/ProducerInfoCard';
@@ -9,12 +9,29 @@ import exportPDF from '../../helpers/exportPDF';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 function FinalPage() {
-  const { general, producer, products, clearAll } = useAppContext();
+  const { general, producer, products, clearAll, sortColumn, sortDirection } = useAppContext();
   const navigate = useNavigate();
   const [showConfirm, setShowConfirm] = useState(false);
 
-  const totalCosto = products.reduce((a, p) => a + p.amount * p.cost_price, 0);
-  const totalVenta = products.reduce((a, p) => a + p.amount * p.sale_price, 0);
+  // Ordenar productos según columna y dirección
+  const sortedProducts: Product[] = [...products].sort((a, b) => {
+    if (!sortColumn) return 0;
+
+    let aValue: any = (a as any)[sortColumn];
+    let bValue: any = (b as any)[sortColumn];
+
+    if (typeof aValue === 'string') {
+      aValue = aValue.toLowerCase();
+      bValue = (bValue as string).toLowerCase();
+    }
+
+    if (aValue < bValue) return sortDirection === 'asc' ? -1 : 1;
+    if (aValue > bValue) return sortDirection === 'asc' ? 1 : -1;
+    return 0;
+  });
+
+  const totalCosto = sortedProducts.reduce((a, p) => a + p.amount * p.cost_price, 0);
+  const totalVenta = sortedProducts.reduce((a, p) => a + p.amount * p.sale_price, 0);
 
   function handleReiniciar() {
     clearAll();
@@ -37,7 +54,7 @@ function FinalPage() {
         </button>
         <button
           className='btn btn-success'
-          onClick={() => exportPDF(general, producer, products, totalCosto, totalVenta)}
+          onClick={() => exportPDF(general, producer, sortedProducts, totalCosto, totalVenta)}
           disabled={!general || !producer || products.length === 0}
         >
           <i className='bi bi-download d-inline d-sm-none'></i>
@@ -46,7 +63,7 @@ function FinalPage() {
         <button
           className='btn btn-warning'
           onClick={() => {
-            const blob = exportPDF(general, producer, products, totalCosto, totalVenta, { returnBlob: true });
+            const blob = exportPDF(general, producer, sortedProducts, totalCosto, totalVenta, { returnBlob: true });
             if (!blob) return;
             const url = URL.createObjectURL(blob);
             const win = window.open(url);
@@ -64,7 +81,6 @@ function FinalPage() {
         >
           <i className='bi bi-download d-inline d-sm-none'></i>
           <span className='d-none d-sm-inline'>Reiniciar</span>
-          
         </button>
       </div>
 
@@ -76,7 +92,7 @@ function FinalPage() {
             <ProducerInfoCard producer={producer} />
           </div>
           <h6>Productos</h6>
-          <ProductsTable products={products} total_cost={totalCosto} total_sell={totalVenta} />
+          <ProductsTable products={sortedProducts} total_cost={totalCosto} total_sell={totalVenta} />
         </div>
       </div>
 
