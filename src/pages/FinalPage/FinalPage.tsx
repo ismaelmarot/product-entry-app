@@ -32,16 +32,16 @@ function FinalPage() {
 
       <div className='mb-3 d-flex gap-2'>
         <button className='btn btn-secondary d-flex align-items-center' onClick={() => navigate('/productos')}>
-          <i className='bi bi-backspace'></i>
-          <span className='ms-2 d-none d-sm-inline'>Volver a productos</span>
+          <i className='bi bi-backspace d-inline d-sm-none'></i>
+          <span className='d-none d-sm-inline'>Volver a productos</span>
         </button>
         <button
           className='btn btn-success'
           onClick={() => exportPDF(general, producer, products, totalCosto, totalVenta)}
           disabled={!general || !producer || products.length === 0}
         >
-          <i className='bi bi-download'></i>
-          <span className='ms-2 d-none d-sm-inline'>Descargar PDF</span>
+          <i className='bi bi-download d-inline d-sm-none'></i>
+          <span className='d-none d-sm-inline'>Descargar PDF</span>
         </button>
         <button
           className='btn btn-warning'
@@ -55,15 +55,15 @@ function FinalPage() {
             }
           }}
         >
-          <i className='bi bi-printer'></i>
-          <span className='ms-2 d-none d-sm-inline'>Imprimir</span>
+          <i className='bi bi-printer d-inline d-sm-none'></i>
+          <span className='d-none d-sm-inline'>Imprimir</span>
         </button>
         <button
           className='btn btn-danger'
           onClick={() => setShowConfirm(true)}
         >
-          <i className='bi bi-x-circle'></i>
-          <span className='ms-2 d-none d-sm-inline'>Reiniciar</span>
+          <i className='bi bi-download d-inline d-sm-none'></i>
+          <span className='d-none d-sm-inline'>Reiniciar</span>
           
         </button>
       </div>
