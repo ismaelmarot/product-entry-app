@@ -13,7 +13,6 @@ function FinalPage() {
   const navigate = useNavigate();
   const [showConfirm, setShowConfirm] = useState(false);
 
-  // Ordenar productos según columna y dirección
   const sortedProducts: Product[] = [...products].sort((a, b) => {
     if (!sortColumn) return 0;
 
