@@ -91,14 +91,14 @@ function TopBar() {
           disabled={!prev}
           onClick={() => prev && navigate(prev)}
         >
-          Anterior
+          <i className='bi bi-arrow-left'></i>
         </button>
         <button
           className={`btn ${next ? 'btn-primary' : 'btn-secondary'}`}
           disabled={!next}
           onClick={() => next && navigate(next)}
         >
-          Siguiente
+          <i className='bi bi-arrow-right'></i>
         </button>
       </div>
     </div>
