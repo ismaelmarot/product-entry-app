@@ -24,7 +24,7 @@ const Footer: React.FC = () => {
                         >
                             Legal
                         </button>
-                        <span className='d-md-inline'>|</span>
+                        <span className='d-md-inline' style={{color: 'rgba(222, 226, 230, 1)', fontWeight:'bolder'}}>|</span>
                         <button 
                             className='btn btn-link px-2 text-decoration-none'
                             onClick={() => setShowTerms(true)}
