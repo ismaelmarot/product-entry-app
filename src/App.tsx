@@ -5,6 +5,7 @@ import GeneralPage from './pages/GeneralPage/GeneralPage';
 import ProducerPage from './pages/ProducerPage/ProducerPage';
 import ProductsPage from './pages/ProductsPage/ProductsPage';
 import FinalPage from './pages/FinalPage/FinalPage';
+import Footer from './components/summary/Footer/Footer';
 
 function TopBar() {
   const navigate = useNavigate();
@@ -41,17 +42,22 @@ function TopBar() {
 export default function App() {
   return (
     <AppProvider>
-      <div className='container py-3'>
-        <TopBar />
-        <TabsNav />
-        <Routes>
-          <Route path='/' element={<Navigate to='/general' replace />} />
-          <Route path='/general' element={<GeneralPage />} />
-          <Route path='/productor' element={<ProducerPage />} />
-          <Route path='/productos' element={<ProductsPage />} />
-          <Route path='/final' element={<FinalPage />} />
-          <Route path='*' element={<Navigate to='/general' replace />} />
-        </Routes>
+      <div id="app-container" style={{display: 'flex', flexDirection: 'column', minHeight: '100vh'}}>
+        <main style={{flex: 1}}>
+          <div className='container py-3'>
+            <TopBar />
+            <TabsNav />
+            <Routes>
+              <Route path='/' element={<Navigate to='/general' replace />} />
+              <Route path='/general' element={<GeneralPage />} />
+              <Route path='/productor' element={<ProducerPage />} />
+              <Route path='/productos' element={<ProductsPage />} />
+              <Route path='/final' element={<FinalPage />} />
+              <Route path='*' element={<Navigate to='/general' replace />} />
+            </Routes>
+          </div>
+        </main>
+        <Footer />
       </div>
     </AppProvider>
   );
