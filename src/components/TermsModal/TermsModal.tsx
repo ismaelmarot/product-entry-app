@@ -13,8 +13,7 @@ const TermsModal: React.FC<TermsModalProps> = ({ show, onClose }) => {
         <Modal.Header closeButton>
             <Modal.Title>Términos de uso</Modal.Title>
         </Modal.Header>
-        <Modal.Body style={{ fontSize:'.7rem', textAlign:'justify' }}>
-            <p>Última actualización: {getCurrentYear()}</p>   
+        <Modal.Body style={{ fontSize:'.7rem', textAlign:'justify' }}>  
             <p> Bienvenido a <span style={{fontWeight:'bold'}}>Products Entry App</span>.</p>
             <p>Al acceder o utilizar este <i>Sitio/Aplicación</i>, acepta cumplir con estos Términos de uso. Si no está de acuerdo con ellos, le recomendamos no utilizar este <i>Sitio Web/Aplicación</i>.</p>   
             <p>1. Propósito:
@@ -45,7 +44,7 @@ const TermsModal: React.FC<TermsModalProps> = ({ show, onClose }) => {
             <p>Contacto: 
                 Si tiene alguna duda sobre estos términos, consultas o inquietudes; escriba a <a href='mailto:ismaelmarot@hotmail.com' style={{textDecoration:'none'}}>ismaelmarot@hotmail.com</a>
             </p>
-
+            <p>Última actualización: {getCurrentYear()}</p> 
         </Modal.Body>
         <Modal.Footer>
             <Button variant='secondary' onClick={onClose}>Cerrar</Button>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
+import { getCurrentYear } from '../../helpers/getCurrentYear';
 
 interface LegalModalProps {
     show: boolean;
@@ -29,23 +30,20 @@ const LegalModal: React.FC<LegalModalProps> = ({ show, onClose }) => {
                 <p>Sitio web:
                      <a href='https://ismaelmarot.github.io' style={{textDecoration:'none'}}> www.ismaelmarot.github.io</a>
                 </p>
+                <p>Licencia del código:
+                    El código de este <i>Sitio/Aplicación</i> y de los proyectos que contiene se distribuye bajo la <span style={{fontWeight:'bold'}}>licencia MIT</span>. Esto permite su uso, copia, modificación y distribución siempre que se mantenga la atribución correspondiente.
+                </p>
+                <p>Propiedad intelectual de contenidos:
+                    El contenido textual, logotipos y elementos gráficos propios de este sitio no se distribuyen bajo la  <span style={{fontWeight:'bold'}}>licencia MIT</span> y permanecen bajo derechos reservados, salvo que se indique expresamente lo contrario.
+                </p>
+                <p>Enlaces externos:
+                    Este <i>Sitio/Aplicación</i> puede contener enlaces a otros sitios web de terceros. Ismael Marot no se hace responsable del contenido o de las políticas de privacidad de dichos sitios.
+                </p>
+                <p>Privacidad y cookies:
+                    Este <i>Sitio/Aplicación</i> no recopila datos personales sensibles, salvo los que proporcione voluntariamente (por ejemplo, a través de formularios o correo electrónico).
+                </p>
 
-
-## Licencia del código
-El código de este sitio web y de los proyectos que contiene se distribuye bajo la **licencia MIT**. Esto permite su uso, copia, modificación y distribución siempre que se mantenga la atribución correspondiente.
-
-## Propiedad intelectual de contenidos
-El contenido textual, logotipos y elementos gráficos propios de este sitio no se distribuyen bajo la licencia MIT y permanecen bajo derechos reservados, salvo que se indique expresamente lo contrario.
-
-## Enlaces externos
-Este sitio puede contener enlaces a otros sitios web de terceros. No me hago responsable del contenido o de las políticas de privacidad de dichos sitios.
-
-## Privacidad y cookies
-Este sitio no recopila datos personales sensibles, salvo los que proporciones voluntariamente (por ejemplo, a través de formularios o correo electrónico).  
-Para más información, consulta la [Política de Privacidad](/privacy).
-
----
-**Última actualización:** [fecha]
+                <p>Última actualización: {getCurrentYear()}</p> 
 
             </Modal.Body>
             <Modal.Footer>
