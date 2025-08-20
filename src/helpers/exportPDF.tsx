@@ -55,13 +55,24 @@ function exportPDF(
       formatAmount(p.sale_price),
     ]),
     styles: { fontSize: 9 },
-    headStyles: { fillColor: [33, 37, 41] },
+    headStyles: { fillColor: [33, 37, 41],
+
+    },
     columnStyles: {
+      0: { halign: 'left' },
       1: { halign: 'right' },
       2: { halign: 'right' },
       3: { halign: 'right' },
       4: { halign: 'right' },
-      5: { halign: 'right' }
+    },
+    didParseCell: function (data) {
+      if (data.section === 'head') {
+        if (data.column.index === 0) {
+          data.cell.styles.halign = 'left';
+        } else {
+          data.cell.styles.halign = 'right';
+        }
+      }
     }
   });
 
@@ -72,7 +83,11 @@ function exportPDF(
       ['Total venta', formatAmount(totalVenta)]
     ],
     theme: 'plain',
-    styles: { fontSize: 11 }
+    styles: { fontSize: 11 },
+    columnStyles: {
+      0: { halign: 'right' },
+      1: { halign: 'right' }
+    }
   });
 
   if (options?.returnBlob) {
