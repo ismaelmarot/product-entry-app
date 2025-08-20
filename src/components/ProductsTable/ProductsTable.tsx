@@ -1,6 +1,6 @@
-import formatAmount from '../../../helpers/formatAmount';
-import type { Product } from '../../../context/AppContext';
-import { useAppContext } from '../../../context/AppContext';
+import formatAmount from '../../helpers/formatAmount';
+import type { Product } from '../../context/AppContext';
+import { useAppContext } from '../../context/AppContext';
 
 type ProductsTableProps = {
   products: Product[];

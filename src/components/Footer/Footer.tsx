@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { getCurrentYear } from '../../../helpers/getCurrentYear';
-import LegalModal from '../../../components/LegalModal/LegalModal';
-import TermsModal from '../../../components/TermsModal/TermsModal';
+import { getCurrentYear } from '../../helpers/getCurrentYear';
+import LegalModal from '../../components/LegalModal/LegalModal';
+import TermsModal from '../../components/TermsModal/TermsModal';
 
 const Footer: React.FC = () => {
     const [showLegal, setShowLegal] = useState(false);

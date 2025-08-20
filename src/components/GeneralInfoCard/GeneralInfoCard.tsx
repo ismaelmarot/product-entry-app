@@ -1,5 +1,5 @@
-import formatDate from '../../../helpers/formData';
-import type { GeneralInfoProps } from '../../../interface/GeneralInfoProps';
+import formatDate from '../../helpers/formData';
+import type { GeneralInfoProps } from '../../interface/GeneralInfoProps';
 
 interface Props {
   general: GeneralInfoProps | null;

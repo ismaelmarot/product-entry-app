@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppContext, type Product } from '../../context/AppContext';
 import ConfirmDeleteModal from '../../components/common/ConfirmDeleteModal';
-import GeneralInfoCard from '../../components/summary/GeneralInfoCard/GeneralInfoCard';
-import ProducerInfoCard from '../../components/summary/ProducerInfoCard/ProducerInfoCard';
-import ProductsTable from '../../components/summary/ProductsTable/ProductsTable';
+import GeneralInfoCard from '../../components/GeneralInfoCard/GeneralInfoCard';
+import ProducerInfoCard from '../../components/ProducerInfoCard/ProducerInfoCard';
+import ProductsTable from '../../components/ProductsTable/ProductsTable';
 import exportPDF from '../../helpers/exportPDF';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 

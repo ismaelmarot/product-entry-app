@@ -1,5 +1,5 @@
-import type { ProducerInfoProps } from '../../../interface/ProducerInfoProps';
-import { formatDocumentoId } from '../../../helpers/formatDocumentId';
+import type { ProducerInfoProps } from '../../interface/ProducerInfoProps';
+import { formatDocumentoId } from '../../helpers/formatDocumentId';
 interface Props {
   producer: ProducerInfoProps | null;
 }

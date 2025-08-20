@@ -3,7 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useAppContext, type Product } from '../../context/AppContext';
 import { useNavigate } from 'react-router-dom';
-import ProductsTable from '../../components/summary/ProductsTable/ProductsTable';
+import ProductsTable from '../../components/ProductsTable/ProductsTable';
 
 const schema = yup.object({
   code: yup.string().optional(),
