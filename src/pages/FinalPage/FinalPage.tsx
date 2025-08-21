@@ -40,7 +40,7 @@ function FinalPage() {
 
   return (
     <div className='mt-3'>
-      <h3>Página 4 — Final / Imprimir / PDF</h3>
+      <h3>Final / Imprimir / PDF</h3>
 
       {!general && <div className='alert alert-warning'>Falta completar la Información general (Paso 1).</div>}
       {!producer && <div className='alert alert-warning'>Faltan Datos del productor (Paso 2).</div>}

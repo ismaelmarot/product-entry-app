@@ -27,7 +27,7 @@ export default function GeneralPage() {
 
   return (
     <div className='mt-3'>
-      <h3>Página 1 — Información general</h3>
+      <h3>Información general</h3>
       <form onSubmit={handleSubmit(onSubmit)} className='row g-3 mt-1' style={{ border:'1px solid rgba(153, 161, 175, 1', padding: '1rem', borderRadius:'.2rem' }}>
         <div className='col-md-4'>
           <label className='form-label'>Lugar</label>
