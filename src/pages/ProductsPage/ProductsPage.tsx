@@ -73,6 +73,17 @@ export default function ProductsPage() {
   const totalCosto = products.reduce((a, p) => a + p.amount * p.cost_price, 0);
   const totalVenta = products.reduce((a, p) => a + p.amount * p.sale_price, 0);
 
+  const clearOnFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    if (e.target.value === "0" || e.target.value === "0.00") {
+      e.target.value = "";
+    }
+  };
+  const restoreOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    if (e.target.value === "") {
+      e.target.value = "0";
+    }
+  };
+
   return (
     <div className='mt-3'>
       <h3>Productos</h3>
@@ -98,23 +109,40 @@ export default function ProductsPage() {
 
         <div className='col-md-3'>
           <label className='form-label'>Cantidad</label>
-          <input type='number' className='form-control' {...register('amount', { valueAsNumber: true })} />
+          <input
+            type='number'
+            className='form-control'
+            {...register('amount', { valueAsNumber: true })}
+          />
           {errors.amount && <div className='text-danger small'>{errors.amount.message}</div>}
         </div>
 
         <div className='col-md-3'>
           <label className='form-label'>$ Costo</label>
-          <input type='number' step='0.01' className='form-control' {...register('cost_price', { valueAsNumber: true })} />
+          <input
+            type='number'
+            step='0.01'
+            className='form-control'
+            {...register('cost_price', { valueAsNumber: true })}
+            onFocus={clearOnFocus}
+            onBlur={restoreOnBlur}
+          />
           {errors.cost_price && <div className='text-danger small'>{errors.cost_price.message}</div>}
         </div>
 
         <div className='col-md-3'>
           <label className='form-label'>$ Venta</label>
-          <input type='number' step='0.01' className='form-control' {...register('sale_price', { valueAsNumber: true })} />
+          <input
+            type='number'
+            step='0.01'
+            className='form-control'
+            {...register('sale_price', { valueAsNumber: true })}
+            onFocus={clearOnFocus}
+            onBlur={restoreOnBlur}
+          />
           {errors.sale_price && <div className='text-danger small'>{errors.sale_price.message}</div>}
         </div>
 
-        {/* Checkbox y porcentaje */}
         <div className='col-md-3 d-flex align-items-center'>
           <input type='checkbox' {...register('usePercentage')} id='usePercentage' className='me-2' />
           <label htmlFor='usePercentage' className='form-label mb-0'>Usar %</label>
@@ -122,7 +150,12 @@ export default function ProductsPage() {
 
         <div className='col-md-3'>
           <label className='form-label'>Porcentaje %</label>
-          <input type='number' className='form-control' {...register('percentage', { valueAsNumber: true })} disabled={!usePercentage} />
+          <input
+            type='number'
+            className='form-control'
+            {...register('percentage', { valueAsNumber: true })}
+            disabled={!usePercentage}
+          />
           {errors.percentage && <div className='text-danger small'>{errors.percentage.message}</div>}
         </div>
 
@@ -139,3 +172,5 @@ export default function ProductsPage() {
     </div>
   );
 }
+
+
