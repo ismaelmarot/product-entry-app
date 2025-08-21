@@ -9,9 +9,9 @@ export default function TabsNav() {
   ];
 
   return (
-    <ul className="nav nav-tabs mt-3">
+    <ul className='nav nav-tabs mt-3'>
       {tabs.map(t => (
-        <li className="nav-item" key={t.to}>
+        <li className='nav-item' key={t.to}>
           <NavLink
             to={t.to}
             className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}

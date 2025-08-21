@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useAppContext, type Product } from '../../context/AppContext';
-import { useNavigate } from 'react-router-dom';
 import ProductsTable from '../../components/ProductsTable/ProductsTable';
 
 type ProductForm = Omit<Product, 'id'> & { usePercentage: boolean; percentage: number };
@@ -27,8 +26,7 @@ const schema = yup.object({
 }).required();
 
 export default function ProductsPage() {
-  const { products, addProduct } = useAppContext();
-  const navigate = useNavigate();
+  const { products, addProduct, removeProduct } = useAppContext();
 
   const { register, handleSubmit, watch, reset, setValue, formState: { errors } } = useForm<ProductForm>({
     resolver: yupResolver(schema),
@@ -70,19 +68,12 @@ export default function ProductsPage() {
     });
   };
 
+  const handleDelete = (id: string) => {
+    removeProduct(id);
+  };
+
   const totalCosto = products.reduce((a, p) => a + p.amount * p.cost_price, 0);
   const totalVenta = products.reduce((a, p) => a + p.amount * p.sale_price, 0);
-
-  const clearOnFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-    if (e.target.value === "0" || e.target.value === "0.00") {
-      e.target.value = "";
-    }
-  };
-  const restoreOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    if (e.target.value === "") {
-      e.target.value = "0";
-    }
-  };
 
   return (
     <div className='mt-3'>
@@ -109,11 +100,7 @@ export default function ProductsPage() {
 
         <div className='col-md-3'>
           <label className='form-label'>Cantidad</label>
-          <input
-            type='number'
-            className='form-control'
-            {...register('amount', { valueAsNumber: true })}
-          />
+          <input type='number' className='form-control' {...register('amount', { valueAsNumber: true })} />
           {errors.amount && <div className='text-danger small'>{errors.amount.message}</div>}
         </div>
 
@@ -124,8 +111,6 @@ export default function ProductsPage() {
             step='0.01'
             className='form-control'
             {...register('cost_price', { valueAsNumber: true })}
-            onFocus={clearOnFocus}
-            onBlur={restoreOnBlur}
           />
           {errors.cost_price && <div className='text-danger small'>{errors.cost_price.message}</div>}
         </div>
@@ -137,8 +122,7 @@ export default function ProductsPage() {
             step='0.01'
             className='form-control'
             {...register('sale_price', { valueAsNumber: true })}
-            onFocus={clearOnFocus}
-            onBlur={restoreOnBlur}
+            disabled={usePercentage}
           />
           {errors.sale_price && <div className='text-danger small'>{errors.sale_price.message}</div>}
         </div>
@@ -150,27 +134,19 @@ export default function ProductsPage() {
 
         <div className='col-md-3'>
           <label className='form-label'>Porcentaje %</label>
-          <input
-            type='number'
-            className='form-control'
-            {...register('percentage', { valueAsNumber: true })}
-            disabled={!usePercentage}
-          />
+          <input type='number' className='form-control' {...register('percentage', { valueAsNumber: true })} disabled={!usePercentage} />
           {errors.percentage && <div className='text-danger small'>{errors.percentage.message}</div>}
         </div>
 
-        <div className='col-12 d-flex justify-content-between'>
-          <button className='btn btn-secondary' type='button' onClick={() => navigate('/productor')}>Anterior</button>
+        <div className='col-12 d-flex justify-content-end'>
           <button className='btn btn-success' type='submit'>Agregar</button>
-          <button className='btn btn-primary' type='button' onClick={() => navigate('/final')} disabled={products.length === 0}>Siguiente</button>
         </div>
       </form>
 
       <hr className='my-4' />
       <h5>Lista de productos</h5>
-      <ProductsTable products={products} total_cost={totalCosto} total_sell={totalVenta} />
+      <ProductsTable products={products} total_cost={totalCosto} total_sell={totalVenta} onDelete={handleDelete} />
     </div>
   );
 }
-
 
