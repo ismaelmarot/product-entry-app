@@ -1,10 +1,7 @@
-import type { ProducerInfoProps } from '../../interface/ProducerInfoProps';
+import type { ProducerInfoCardProps } from '../../interface/ProducerInfoCardProps';
 import { formatDocumentoId } from '../../helpers/formatDocumentId';
-interface Props {
-  producer: ProducerInfoProps | null;
-}
 
-function ProducerInfoCard({ producer }: Props) {
+function ProducerInfoCard({ producer }: ProducerInfoCardProps) {
   return (
     <div className='col-md-6'>
       <h6>Datos del productor</h6>

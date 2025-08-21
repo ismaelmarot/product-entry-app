@@ -1,11 +1,7 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { getCurrentYear } from '../../helpers/getCurrentYear';
-
-interface LegalModalProps {
-    show: boolean;
-        onClose: () => void;
-}
+import type { LegalModalProps } from '../../interface/LegalModalProps';
 
 const LegalModal: React.FC<LegalModalProps> = ({ show, onClose }) => {
     return (
@@ -20,7 +16,6 @@ const LegalModal: React.FC<LegalModalProps> = ({ show, onClose }) => {
                 no limitadas a la idoneidad para un propósito particular...
                 </p>
              
-
                 <p>Responsable: <span>Ismael Marot</span></p>
                 <p>Dirección: La Plata, Buenos Aires, Argentina</p>
                 <p>Correo electrónico:
