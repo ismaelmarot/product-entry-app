@@ -91,7 +91,9 @@ function FinalPage() {
             <ProducerInfoCard producer={producer} />
           </div>
           <h6>Productos</h6>
-          <ProductsTable products={sortedProducts} total_cost={totalCosto} total_sell={totalVenta} />
+          <ProductsTable products={sortedProducts} total_cost={totalCosto} total_sell={totalVenta} onDelete={function (id: string): void {
+            throw new Error('Function not implemented.');
+          } } />
         </div>
       </div>
 

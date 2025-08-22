@@ -74,11 +74,11 @@ export default function ProductsTable({ products, total_cost, total_sell, onDele
       <tfoot>
         <tr>
           <th>Total</th>
-          <th className='text-end'>-</th>
-          <th className='text-end'>-</th>
+          <th className='text-end' />
+          <th className='text-end' />
           <th className='text-end'>{total_cost.toFixed(2)}</th>
           <th className='text-end'>{total_sell.toFixed(2)}</th>
-          <th className='text-center'>-</th>
+          <th className='text-center' />
         </tr>
       </tfoot>
     </table>
