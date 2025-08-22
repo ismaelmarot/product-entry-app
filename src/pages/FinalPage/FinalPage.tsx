@@ -12,6 +12,7 @@ function FinalPage() {
   const { general, producer, products, clearAll, sortColumn, sortDirection } = useAppContext();
   const navigate = useNavigate();
   const [showConfirm, setShowConfirm] = useState(false);
+  const { removeProduct } = useAppContext();
 
   const sortedProducts: Product[] = [...products].sort((a, b) => {
     if (!sortColumn) return 0;
@@ -91,9 +92,12 @@ function FinalPage() {
             <ProducerInfoCard producer={producer} />
           </div>
           <h6>Productos</h6>
-          <ProductsTable products={sortedProducts} total_cost={totalCosto} total_sell={totalVenta} onDelete={function (id: string): void {
-            throw new Error('Function not implemented.');
-          } } />
+          <ProductsTable 
+            products={sortedProducts} 
+            total_cost={totalCosto} 
+            total_sell={totalVenta} 
+            onDelete={(id: string) => removeProduct(id)} 
+          />
         </div>
       </div>
 
