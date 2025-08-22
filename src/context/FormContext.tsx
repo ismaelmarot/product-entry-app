@@ -1,45 +1,26 @@
-import { createContext, useState, type ReactNode, useContext } from "react";
-interface ProducerData {
-  ciudad: string;
-  fecha: string;
-  productor: string;
-  otros: string;
-}
-interface Product {
-  detalle: string;
-  cantidad: number;
-  precioCosto: number;
-  precioVenta: number;
-}
-interface FormState {
-  producerData: ProducerData;
-  products: Product[];
-}
-interface FormContextProps {
-  data: FormState;
-  setProducerData: (data: ProducerData) => void;
-  addProduct: (product: Product) => void;
-  updateProduct: (index: number, product: Product) => void;
-  removeProduct: (index: number) => void;
-}
+import { createContext, useState, type ReactNode, useContext } from 'react';
+import type { ProductProps } from '../interface/ProductProps';
+import type { ProducerDataProps } from '../interface/ProducerDataProps';
+import type { FormContextProps } from '../interface/FormContextProps';
+import type { FormStateProps } from '../interface/FormStateProps';
 
 const FormContext = createContext<FormContextProps | undefined>(undefined);
 
 export const FormProvider = ({ children }: { children: ReactNode }) => {
-  const [data, setData] = useState<FormState>({
+  const [data, setData] = useState<FormStateProps>({
     producerData: { ciudad: "", fecha: "", productor: "", otros: "" },
     products: [],
   });
 
-  const setProducerData = (producerData: ProducerData) => {
+  const setProducerData = (producerData: ProducerDataProps) => {
     setData(prev => ({ ...prev, producerData }));
   };
 
-  const addProduct = (product: Product) => {
+  const addProduct = (product: ProductProps) => {
     setData(prev => ({ ...prev, products: [...prev.products, product] }));
   };
 
-  const updateProduct = (index: number, product: Product) => {
+  const updateProduct = (index: number, product: ProductProps) => {
     setData(prev => {
       const newProducts = [...prev.products];
       newProducts[index] = product;
