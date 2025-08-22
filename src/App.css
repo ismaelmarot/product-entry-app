@@ -13,12 +13,10 @@ html, body, #root {
   text-align: center;
 }
 
-/* Esto asegura que el contenedor principal crezca y empuje el footer */
 main {
   flex: 1;
 }
 
-/* Mantén el resto igual */
 .logo {
   height: 6em;
   padding: 1.5em;

@@ -1,24 +1,20 @@
 import { createContext, useState, type ReactNode, useContext } from "react";
-
 interface ProducerData {
   ciudad: string;
   fecha: string;
   productor: string;
   otros: string;
 }
-
 interface Product {
   detalle: string;
   cantidad: number;
   precioCosto: number;
   precioVenta: number;
 }
-
 interface FormState {
   producerData: ProducerData;
   products: Product[];
 }
-
 interface FormContextProps {
   data: FormState;
   setProducerData: (data: ProducerData) => void;
