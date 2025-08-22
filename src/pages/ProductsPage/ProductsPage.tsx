@@ -68,8 +68,8 @@ export default function ProductsPage() {
     });
   };
 
-  const handleDelete = (id: string) => {
-    removeProduct(id);
+  const handleDelete = (id: string | number) => {
+    removeProduct(id.toString());
   };
 
   const totalCosto = products.reduce((a, p) => a + p.amount * p.cost_price, 0);
@@ -149,4 +149,3 @@ export default function ProductsPage() {
     </div>
   );
 }
-

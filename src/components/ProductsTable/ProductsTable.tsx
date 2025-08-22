@@ -1,13 +1,6 @@
-import type { Product } from '../../context/AppContext';
 import { useAppContext } from '../../context/AppContext';
 import formatAmount from '../../helpers/formatAmount';
-
-type ProductsTableProps = {
-  products: Product[];
-  total_cost: number;
-  total_sell: number;
-  onDelete: (id: string) => void;
-};
+import type { ProductsTableProps } from '../../interface/ProductsTableProps';
 
 export default function ProductsTable({ products, total_cost, total_sell, onDelete }: ProductsTableProps) {
   const { sortColumn, sortDirection, setSort } = useAppContext();
@@ -84,4 +77,3 @@ export default function ProductsTable({ products, total_cost, total_sell, onDele
     </table>
   );
 }
-
