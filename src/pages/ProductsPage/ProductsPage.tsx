@@ -1,8 +1,8 @@
 import React from 'react';
-import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useAppContext } from '../../context/AppContext';
+import * as yup from 'yup';
 import type { ProductForm } from '../../types/types';
 import ProductsTable from '../../components/ProductsTable/ProductsTable';
 
@@ -33,10 +33,10 @@ export default function ProductsPage() {
       code: '',
       detail: '',
       amount: 1,
-      cost_price: 0,
-      sale_price: 0,
+      cost_price: undefined,
+      sale_price: undefined,
       usePercentage: false,
-      percentage: 0
+      percentage: undefined
     },
   });
 

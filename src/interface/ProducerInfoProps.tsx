@@ -1,7 +1,7 @@
 export interface ProducerInfoProps {
-    nombre: string;
-    apellido: string;
-    documento?: string;
-    telefono?: string;
+    first_name: string;
+    last_name: string;
+    id_number?: string;
+    phone?: string;
     email?: string;
 }
