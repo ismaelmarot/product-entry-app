@@ -1,8 +1,9 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { useAppContext, type GeneralInfo } from '../../context/AppContext';
+import { useAppContext } from '../../context/AppContext';
 import { useNavigate } from 'react-router-dom';
+import type { GeneralInfo } from '../../types/types';
 
 const schema = yup.object({
   lugar: yup.string().required("El lugar es obligatorio"),
@@ -16,7 +17,7 @@ export default function GeneralPage() {
   const navigate = useNavigate();
 
   const { register, handleSubmit, formState: { errors } } = useForm<GeneralInfo>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schema) as any,
     defaultValues: general ?? { lugar: '', fecha: new Date().toISOString().slice(0,10), receptor: '', otros: '' }
   });
 

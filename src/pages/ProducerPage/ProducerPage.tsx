@@ -6,10 +6,10 @@ import type { ProducerInfoProps } from '../../interface/ProducerInfoProps';
 import { useNavigate } from 'react-router-dom';
 
 const schema = yup.object({
-  nombre: yup.string().required("El nombre es obligatorio"),
-  apellido: yup.string().required("El apellido es obligatorio"),
-  documento: yup.string().optional(),
-  telefono: yup.string().optional(),
+  first_name: yup.string().required("El nombre es obligatorio"),
+  last_name: yup.string().required("El apellido es obligatorio"),
+  id_number: yup.string().optional(),
+  phone: yup.string().optional(),
   email: yup.string().email('Email inválido').optional(),
 }).required();
 
@@ -18,8 +18,8 @@ export default function ProducerPage() {
   const navigate = useNavigate();
 
   const { register, handleSubmit, formState: { errors } } = useForm<ProducerInfoProps>({
-    resolver: yupResolver(schema),
-    defaultValues: producer ?? { nombre: '', apellido: '', documento: '', telefono: '', email: '' }
+    resolver: yupResolver(schema) as any,
+    defaultValues: producer ?? { first_name: '', last_name: '', id_number: '', phone: '', email: '' }
   });
 
   const onSubmit = (data: ProducerInfoProps) => {
@@ -33,21 +33,21 @@ export default function ProducerPage() {
       <form onSubmit={handleSubmit(onSubmit)} className='row g-3 mt-1' style={{ border:'1px solid rgba(153, 161, 175, 1', padding: '1rem', borderRadius:'.2rem' }}>
         <div className='col-md-4'>
           <label className='form-label'>Nombre</label>
-          <input className='form-control' {...register('nombre')} />
-          {errors.nombre && <div className='text-danger small'>{errors.nombre.message}</div>}
+          <input className='form-control' {...register('first_name')} />
+          {errors.first_name && <div className='text-danger small'>{errors.first_name.message}</div>}
         </div>
         <div className='col-md-4'>
           <label className='form-label'>Apellido</label>
-          <input className='form-control' {...register('apellido')} />
-          {errors.apellido && <div className='text-danger small'>{errors.apellido.message}</div>}
+          <input className='form-control' {...register('last_name')} />
+          {errors.last_name && <div className='text-danger small'>{errors.last_name.message}</div>}
         </div>
         <div className='col-md-4'>
           <label className='form-label'>Documento</label>
-          <input className='form-control' {...register('documento')} />
+          <input className='form-control' {...register('id_number')} />
         </div>
         <div className='col-md-4'>
           <label className='form-label'>Teléfono</label>
-          <input className='form-control' {...register('telefono')} />
+          <input className='form-control' {...register('phone')} />
         </div>
         <div className='col-md-4'>
           <label className='form-label'>Email</label>
