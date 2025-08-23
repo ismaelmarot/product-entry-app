@@ -31,7 +31,7 @@ export default function ProductsPage() {
   const [persistPercentage, setPersistPercentage] = React.useState<number | undefined>(undefined);
 
   const { register, handleSubmit, watch, reset, setValue, formState: { errors } } = useForm<ProductForm>({
-    resolver: yupResolver(schema) as any, // <-- evita el error de TypeScript
+    resolver: yupResolver(schema) as any,
     defaultValues: {
       code: '',
       detail: '',
