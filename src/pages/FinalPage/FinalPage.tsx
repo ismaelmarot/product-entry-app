@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppContext, type Product } from '../../context/AppContext';
+import { useAppContext } from '../../context/AppContext';
+import type { ProductProps } from '../../interface/ProductProps';
 import ConfirmDeleteModal from '../../components/common/ConfirmDeleteModal';
 import GeneralInfoCard from '../../components/GeneralInfoCard/GeneralInfoCard';
 import ProducerInfoCard from '../../components/ProducerInfoCard/ProducerInfoCard';
@@ -14,7 +15,7 @@ function FinalPage() {
   const [showConfirm, setShowConfirm] = useState(false);
   const { removeProduct } = useAppContext();
 
-  const sortedProducts: Product[] = [...products].sort((a, b) => {
+  const sortedProducts: ProductProps[] = [...products].sort((a, b) => {
     if (!sortColumn) return 0;
 
     let aValue: any = (a as any)[sortColumn];
@@ -96,7 +97,7 @@ function FinalPage() {
             products={sortedProducts} 
             total_cost={totalCosto} 
             total_sell={totalVenta} 
-            onDelete={(id: string) => removeProduct(id)} 
+            onDelete={(id: string | number) => removeProduct(String(id))} 
           />
         </div>
       </div>
