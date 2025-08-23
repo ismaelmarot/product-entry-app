@@ -27,16 +27,19 @@ const schema = yup.object({
 export default function ProductsPage() {
   const { products, addProduct, removeProduct } = useAppContext();
 
+  const [persistUsePercentage, setPersistUsePercentage] = React.useState(false);
+  const [persistPercentage, setPersistPercentage] = React.useState<number | undefined>(undefined);
+
   const { register, handleSubmit, watch, reset, setValue, formState: { errors } } = useForm<ProductForm>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schema) as any, // <-- evita el error de TypeScript
     defaultValues: {
       code: '',
       detail: '',
       amount: 1,
       cost_price: undefined,
       sale_price: undefined,
-      usePercentage: false,
-      percentage: undefined
+      usePercentage: persistUsePercentage,
+      percentage: persistPercentage
     },
   });
 
@@ -54,21 +57,23 @@ export default function ProductsPage() {
     }
   }, [usePercentage, percentage, costPrice, setValue]);
 
-  const onAdd = (data: any) => {
-    const validData = data as ProductForm;
+  const onAdd = (data: ProductForm) => {
     addProduct({ 
-      ...validData, 
-      detail: validData.detail.charAt(0).toUpperCase() + validData.detail.slice(1)
+      ...data, 
+      detail: data.detail.charAt(0).toUpperCase() + data.detail.slice(1)
     });
+
+    setPersistUsePercentage(data.usePercentage);
+    setPersistPercentage(data.percentage);
 
     reset({
       code: '',
       detail: '',
       amount: 1,
-      cost_price: 0,
-      sale_price: 0,
-      usePercentage: false,
-      percentage: 0
+      cost_price: undefined,
+      sale_price: undefined,
+      usePercentage: data.usePercentage,
+      percentage: data.usePercentage ? data.percentage : undefined
     });
   };
 
