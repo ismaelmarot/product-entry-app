@@ -1,11 +1,10 @@
 import React from 'react';
+import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import { useAppContext, type Product } from '../../context/AppContext';
+import { useAppContext } from '../../context/AppContext';
+import type { ProductForm } from '../../types/types';
 import ProductsTable from '../../components/ProductsTable/ProductsTable';
-
-type ProductForm = Omit<Product, 'id'> & { usePercentage: boolean; percentage: number };
 
 const schema = yup.object({
   code: yup.string().optional(),
@@ -55,8 +54,13 @@ export default function ProductsPage() {
     }
   }, [usePercentage, percentage, costPrice, setValue]);
 
-  const onAdd = (data: ProductForm) => {
-    addProduct({ ...data, detail: data.detail.charAt(0).toUpperCase() + data.detail.slice(1) });
+  const onAdd = (data: any) => {
+    const validData = data as ProductForm;
+    addProduct({ 
+      ...validData, 
+      detail: validData.detail.charAt(0).toUpperCase() + validData.detail.slice(1)
+    });
+
     reset({
       code: '',
       detail: '',
@@ -79,7 +83,7 @@ export default function ProductsPage() {
     <div className='mt-3'>
       <h3>Productos</h3>
       <form
-        onSubmit={handleSubmit<ProductForm>(onAdd)}
+        onSubmit={handleSubmit(onAdd)}
         className='row g-3 mt-1'
         style={{ border:'1px solid rgba(153, 161, 175, 1)', padding: '1rem', borderRadius:'.2rem' }}
       >
@@ -145,7 +149,12 @@ export default function ProductsPage() {
 
       <hr className='my-4' />
       <h5>Lista de productos</h5>
-      <ProductsTable products={products} total_cost={totalCosto} total_sell={totalVenta} onDelete={handleDelete} />
+      <ProductsTable 
+        products={products} 
+        total_cost={totalCosto} 
+        total_sell={totalVenta} 
+        onDelete={handleDelete} 
+      />
     </div>
   );
 }

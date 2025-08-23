@@ -1,7 +1,8 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { useAppContext, type ProducerInfo } from '../../context/AppContext';
+import { useAppContext } from '../../context/AppContext';
+import type { ProducerInfoProps } from '../../interface/ProducerInfoProps';
 import { useNavigate } from 'react-router-dom';
 
 const schema = yup.object({
@@ -16,12 +17,12 @@ export default function ProducerPage() {
   const { producer, setProducer } = useAppContext();
   const navigate = useNavigate();
 
-  const { register, handleSubmit, formState: { errors } } = useForm<ProducerInfo>({
+  const { register, handleSubmit, formState: { errors } } = useForm<ProducerInfoProps>({
     resolver: yupResolver(schema),
     defaultValues: producer ?? { nombre: '', apellido: '', documento: '', telefono: '', email: '' }
   });
 
-  const onSubmit = (data: ProducerInfo) => {
+  const onSubmit = (data: ProducerInfoProps) => {
     setProducer(data);
     navigate('/productos');
   };

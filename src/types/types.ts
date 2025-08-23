@@ -35,3 +35,8 @@ export type AppState = {
     clearAll: () => void;
     setSort: (column: string, direction: 'asc' | 'desc') => void;
 };
+
+export type ProductForm = Omit<Product, 'id'> & { 
+    usePercentage: boolean;
+    percentage: number
+};
