@@ -32,6 +32,7 @@ export type AppState = {
     setProducer: (p: ProducerInfo) => void;
     addProduct: (p: Omit<Product, 'id'>) => void;
     removeProduct: (id: string) => void;
+    updateProduct: (updated: Product) => void;
     clearAll: () => void;
     setSort: (column: string, direction: 'asc' | 'desc') => void;
 };
@@ -39,4 +40,10 @@ export type AppState = {
 export type ProductForm = Omit<Product, 'id'> & { 
     usePercentage: boolean;
     percentage: number
+};
+
+export type EditProductModalProps = {
+  product: Product;
+  onConfirm: (updated: Product) => void;
+  onCancel: () => void;
 };

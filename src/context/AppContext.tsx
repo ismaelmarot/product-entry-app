@@ -28,6 +28,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const setProducer = (p: ProducerInfo) => setProducerState(p);
   const addProduct = (p: Omit<Product, 'id'>) => setProducts(prev => [...prev, { ...p, id: uuidv4() }]);
   const removeProduct = (id: string) => setProducts(prev => prev.filter(x => x.id !== id));
+
+  const updateProduct = (updated: Product) =>
+    setProducts(prev => prev.map(p => p.id === updated.id ? updated : p));
+
   const clearAll = () => {
     setGeneralState(null);
     setProducerState(null);
@@ -38,15 +42,25 @@ export function AppProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem('pt_producer');
     localStorage.removeItem('pt_products');
   };
+
   const setSort = (column: string, direction: 'asc' | 'desc') => {
     setSortColumn(column);
     setSortDirection(direction);
   };
 
   const value = useMemo(() => ({
-    general, producer, products,
-    sortColumn, sortDirection,
-    setGeneral, setProducer, addProduct, removeProduct, clearAll, setSort
+    general,
+    producer,
+    products,
+    sortColumn,
+    sortDirection,
+    setGeneral,
+    setProducer,
+    addProduct,
+    removeProduct,
+    updateProduct,
+    clearAll,
+    setSort
   }), [general, producer, products, sortColumn, sortDirection]);
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
