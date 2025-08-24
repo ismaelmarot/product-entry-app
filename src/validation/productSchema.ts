@@ -18,16 +18,19 @@ export const productSchema = yup.object({
     .when('usePercentage', {
       is: false,
       then: schema => schema.required('Precio de venta requerido'),
-      otherwise: schema => schema.notRequired()
+      otherwise: schema => schema.nullable()
     }),
   usePercentage: yup.boolean(),
-  percentage: yup
-    .number()
+  percentage: yup.number()
     .typeError("Número válido")
     .min(0, '>= 0')
+    .nullable()
+    .transform((value, originalValue) => {
+      return originalValue === '' || isNaN(originalValue) ? null : value;
+    })
     .when('usePercentage', {
       is: true,
       then: schema => schema.required('Porcentaje requerido'),
-      otherwise: schema => schema.notRequired(),
+      otherwise: schema => schema.notRequired()
     }),
 }).required();
