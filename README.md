@@ -102,3 +102,10 @@ Exported PDFs are generated using jsPDF
 
 This project is licensed under the MIT License.
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+
+---
+### Captures
+
+<img src="./screenshots/screenshot_01.png" alt="Captura 1" width="300" />
+<img src="./screenshots/screenshot_02.png" alt="Captura 2" width="300" />
+
