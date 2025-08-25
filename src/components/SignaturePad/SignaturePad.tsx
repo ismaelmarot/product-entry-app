@@ -1,18 +1,9 @@
 import { useRef, useImperativeHandle, forwardRef } from 'react';
 import SignatureCanvas from 'react-signature-canvas';
+import type { SignaturePadRefProps } from '../../interface/SignaturePadRefProps';
+import type { SignaturePadProps } from '../../interface/SignaturePadProps';
 
-interface SignaturePadProps {
-    width?: number;
-    height?: number;
-    backgroundColor?: string;
-}
-
-export interface SignaturePadRef {
-    clear: () => void;
-    getDataURL: () => string;
-}
-
-const SignaturePad = forwardRef<SignaturePadRef, SignaturePadProps>(
+const SignaturePad = forwardRef<SignaturePadRefProps, SignaturePadProps>(
     ({ width = 400, height = 150, backgroundColor = '#fff' }, ref) => {
         const sigCanvas = useRef<SignatureCanvas>(null);
 
