@@ -91,8 +91,8 @@ function ProductsTable({ products, total_cost, total_sell, onDelete }: ProductsT
             <th>Total</th>
             <th className='text-end' />
             <th className='text-end' />
-            <th className='text-end'>{total_cost.toFixed(2)}</th>
-            <th className='text-end'>{total_sell.toFixed(2)}</th>
+            <th className='text-end'>{formatAmount(total_cost)}</th>
+            <th className='text-end'>{formatAmount(total_sell)}</th>
             <th className='text-center' />
           </tr>
         </tfoot>

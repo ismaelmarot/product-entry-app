@@ -64,7 +64,7 @@ function exportPDF(
 
   autoTable(doc, {
     startY: y + 2,
-    head: [['Detalle', 'Cant.', 'Código', '$ Costo', '$ Venta', 'Acciones']],
+    head: [['Detalle', 'Cant.', 'Código', '$ Costo', '$ Venta']],
     body: products.map((p) => [
       p.detail,
       String(p.amount),
@@ -80,8 +80,14 @@ function exportPDF(
       2: { halign: 'right' },
       3: { halign: 'right' },
       4: { halign: 'right' },
-      5: { halign: 'right' },
     },
+    didParseCell: (data) => {
+    if (data.section === 'head') {
+      // Alínea el encabezado igual que las columnas
+      if (data.column.index === 0) data.cell.styles.halign = 'left';
+      else data.cell.styles.halign = 'right';
+    }
+  },
     margin: { bottom: 40 },
   });
 
