@@ -11,6 +11,7 @@ export type ProducerInfo = {
     id_number?: string;
     phone?: string;
     email?: string;
+    signature?: string;
 };
 
 export type Product = {

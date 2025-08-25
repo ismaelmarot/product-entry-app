@@ -73,20 +73,20 @@ function exportPDF(
       formatAmount(p.sale_price),
     ]),
     styles: { fontSize: 9 },
-    headStyles: { fillColor: [23, 49, 62] },
+    headStyles: { fillColor: [23, 49, 62], lineColor: [0, 0, 0], lineWidth: 0.4 },
     columnStyles: {
       0: { halign: 'left' },
       1: { halign: 'right' },
       2: { halign: 'right' },
       3: { halign: 'right' },
-      4: { halign: 'right' },
+      4: { halign: 'right' }
     },
     didParseCell: (data) => {
-    if (data.section === 'head') {
-      if (data.column.index === 0) data.cell.styles.halign = 'left';
-      else data.cell.styles.halign = 'right';
-    }
-  },
+      if (data.section === 'head') {
+        if (data.column.index === 0) data.cell.styles.halign = 'left';
+        else data.cell.styles.halign = 'right';
+      }
+    },
     margin: { bottom: 40 },
   });
 
@@ -115,10 +115,16 @@ function exportPDF(
 
     doc.setFontSize(9);
 
-    doc.line(centerX - 90, pageHeight - 15, centerX - 30, pageHeight - 15);
-    doc.text('Firma Productor', centerX - 60, pageHeight - 10, { align: 'center' });
+    const firmaProductorY = pageHeight - 15;
+    doc.line(centerX - 90, firmaProductorY, centerX - 30, firmaProductorY);
+    if (producer?.signature) {
+      doc.addImage(producer.signature, 'PNG', centerX - 90, firmaProductorY - 10, 60, 15);
+    } else {
+      doc.text('Firma Productor', centerX - 60, pageHeight - 10, { align: 'center' });
+    }
 
-    doc.line(centerX + 30, pageHeight - 15, centerX + 90, pageHeight - 15);
+    const firmaReceptorY = pageHeight - 15;
+    doc.line(centerX + 30, firmaReceptorY, centerX + 90, firmaReceptorY);
     doc.text('Firma Receptor', centerX + 60, pageHeight - 10, { align: 'center' });
 
     doc.setFontSize(8);

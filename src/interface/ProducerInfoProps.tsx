@@ -4,4 +4,5 @@ export interface ProducerInfoProps {
     id_number?: string;
     phone?: string;
     email?: string;
+    signature?: string;
 }
