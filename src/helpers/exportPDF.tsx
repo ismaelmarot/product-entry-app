@@ -41,10 +41,10 @@ function exportPDF(
   }
 
   if (producer) {
-    const p1 = `Productor: ${producer.nombre} ${producer.apellido}`;
+    const p1 = `Productor: ${producer.first_name} ${producer.last_name}`;
     const p2 = [
-      producer.documento && `Doc: ${producer.documento}`,
-      producer.telefono && `Tel: ${producer.telefono}`,
+      producer.id_number && `Doc: ${producer.id_number}`,
+      producer.phone && `Tel: ${producer.phone}`,
       producer.email && `Email: ${producer.email}`,
     ]
       .filter(Boolean)
@@ -64,7 +64,7 @@ function exportPDF(
 
   autoTable(doc, {
     startY: y + 2,
-    head: [['Detalle', 'Cant.', 'Código', '$ Costo', '$ Venta']],
+    head: [['Detalle', 'Cant.', 'Código', '$ Costo', '$ Venta', 'Acciones']],
     body: products.map((p) => [
       p.detail,
       String(p.amount),
@@ -80,6 +80,7 @@ function exportPDF(
       2: { halign: 'right' },
       3: { halign: 'right' },
       4: { halign: 'right' },
+      5: { halign: 'right' },
     },
     margin: { bottom: 40 },
   });
