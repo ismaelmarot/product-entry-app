@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useAppContext } from '../../context/AppContext';
 import formatAmount from '../../helpers/formatAmount';
 import type { ProductsTableProps } from '../../interface/ProductsTableProps';
-
 import type { Product } from '../../types/types';
 import EditProductModal from '../EditProductModal/EditProductModal';
 
