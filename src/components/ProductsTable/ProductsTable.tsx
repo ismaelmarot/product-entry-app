@@ -4,11 +4,13 @@ import formatAmount from '../../helpers/formatAmount';
 import type { ProductsTableProps } from '../../interface/ProductsTableProps';
 import type { Product } from '../../types/types';
 import EditProductModal from '../EditProductModal/EditProductModal';
+import ConfirmDeleteModal from '../ConfirmDeleteModal/ConfirmDeleteModal';
 
 function ProductsTable({ products, total_cost, total_sell, onDelete }: ProductsTableProps) {
   const { sortColumn, sortDirection, setSort, updateProduct } = useAppContext();
 
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
+  const [productToDelete, setProductToDelete] = useState<Product | null>(null);
 
   const sortedProducts = [...products].sort((a, b) => {
     if (!sortColumn) return 0;
@@ -34,6 +36,13 @@ function ProductsTable({ products, total_cost, total_sell, onDelete }: ProductsT
   const handleEditConfirm = (updatedProduct: Product) => {
     updateProduct(updatedProduct);
     setEditingProduct(null);
+  };
+
+  const handleDeleteConfirm = () => {
+    if (productToDelete) {
+      onDelete(productToDelete.id);
+      setProductToDelete(null);
+    }
   };
 
   if (products.length === 0) return <p className='text-muted'>Sin productos.</p>;
@@ -78,7 +87,7 @@ function ProductsTable({ products, total_cost, total_sell, onDelete }: ProductsT
                 </button>
                 <button
                   className='btn btn-sm btn-danger'
-                  onClick={() => onDelete(p.id)}
+                  onClick={() => setProductToDelete({ ...p, id: String(p.id) })}
                 >
                   Eliminar
                 </button>
@@ -97,12 +106,22 @@ function ProductsTable({ products, total_cost, total_sell, onDelete }: ProductsT
           </tr>
         </tfoot>
       </table>
-
       {editingProduct && (
         <EditProductModal
           product={editingProduct}
           onConfirm={handleEditConfirm}
           onCancel={() => setEditingProduct(null)}
+        />
+      )}
+      {productToDelete && (
+        <ConfirmDeleteModal
+          show={!!productToDelete}
+          title="Confirmar eliminación"
+          message={`¿Estás seguro de eliminar el producto "${productToDelete.detail}"?`}
+          confirmText="Eliminar"
+          cancelText="Cancelar"
+          onConfirm={handleDeleteConfirm}
+          onCancel={() => setProductToDelete(null)}
         />
       )}
     </div>

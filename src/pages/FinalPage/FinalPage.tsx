@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../../context/AppContext';
 import type { ProductProps } from '../../interface/ProductProps';
-import ConfirmDeleteModal from '../../components/common/ConfirmDeleteModal';
+import ConfirmDeleteModal from '../../components/ConfirmDeleteModal/ConfirmDeleteModal';
 import GeneralInfoCard from '../../components/GeneralInfoCard/GeneralInfoCard';
 import ProducerInfoCard from '../../components/ProducerInfoCard/ProducerInfoCard';
 import ProductsTable from '../../components/ProductsTable/ProductsTable';
