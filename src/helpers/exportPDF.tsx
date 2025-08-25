@@ -83,7 +83,6 @@ function exportPDF(
     },
     didParseCell: (data) => {
     if (data.section === 'head') {
-      // Alínea el encabezado igual que las columnas
       if (data.column.index === 0) data.cell.styles.halign = 'left';
       else data.cell.styles.halign = 'right';
     }
