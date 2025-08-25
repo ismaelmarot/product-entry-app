@@ -7,10 +7,10 @@ function ProducerInfoCard({ producer }: ProducerInfoCardProps) {
       <h6>Datos del productor</h6>
       {producer ? (
         <ul className='mb-3'>
-          <li><strong>Apellido:</strong> {producer.apellido}</li>
-          <li><strong>Nombre:</strong> {producer.nombre}</li>
-          {producer.documento && <li><strong>Documento:</strong> {formatDocumentoId(producer.documento)}</li>}
-          {producer.telefono && <li><strong>Teléfono:</strong> {producer.telefono}</li>}
+          <li><strong>Apellido:</strong> {producer.last_name}</li>
+          <li><strong>Nombre:</strong> {producer.first_name}</li>
+          {producer.id_number && <li><strong>Documento:</strong> {formatDocumentoId(producer.id_number)}</li>}
+          {producer.phone && <li><strong>Teléfono:</strong> {producer.phone}</li>}
           {producer.email && <li><strong>Email:</strong> {producer.email}</li>}
         </ul>
       ) : (
