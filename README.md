@@ -106,6 +106,8 @@ This project is licensed under the MIT License.
 ---
 ### Captures
 
-<img src="src/screenshots/screenshot_01.png" alt="Captura 1" width="300" />
-<img src="src/screenshots/screenshot_02.png" alt="Captura 2" width="300" />
+<img src="src/screenshots/screenshot_01.png" alt="Captura 1" width="400" />
+
+
+![Captura 1](src/screenshots/screenshot_01.png)
 
