@@ -55,11 +55,6 @@ function ProducerPage() {
         });
 
         reset({
-            first_name: producer?.first_name ?? '',
-            last_name: producer?.last_name ?? '',
-            id_number: producer?.id_number ?? '',
-            phone: producer?.phone ?? '',
-            email: producer?.email ?? '',
             signature: ''
         });
     };
