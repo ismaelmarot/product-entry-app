@@ -80,7 +80,7 @@ function FinalPage() {
           className='btn btn-danger'
           onClick={() => setShowConfirm(true)}
         >
-          <i className='bi bi-download d-inline d-sm-none'></i>
+          <i className='bi bi-x-circle d-inline d-sm-none'></i>
           <span className='d-none d-sm-inline'>Reiniciar</span>
         </button>
       </div>
