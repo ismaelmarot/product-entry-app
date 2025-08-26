@@ -1,5 +1,14 @@
 # Product Entry App 🛒
 
+<p align="center">
+  <a href="https://ismaelmarot.github.io/product-entry-app/#/general">
+    <img 
+      src="https://img.shields.io/badge/🚀%20Ir%20a%20la%20aplicación-blue?style=for-the-badge&logoWidth=30" 
+      alt="Ir a la aplicación"
+    >
+  </a>
+</p>
+
 A modern web application built with **React**, **TypeScript**, **Vite**, and **Bootstrap**, designed for managing product entries efficiently.
 
 ---
