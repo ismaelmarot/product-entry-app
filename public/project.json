@@ -1,5 +1,5 @@
 {
-  "title": "Cash Counter",
+  "title": "Products Entries App",
   "short_description": "A web application designed for managing product entries efficiently.",
   "long_description": "A modern web app built with React, TypeScript, Vite, and Bootstrap to manage products and producers efficiently. Users can record general info (city, date, receiver), add producer details (name, contact info), and manage product data (description, quantity, cost, and sale price). Products can be viewed, edited, or deleted dynamically, and the final list can be exported or printed as a PDF using jsPDF. Powered by React, TypeScript, Vite, Bootstrap, and jsPDF.",
   "technologies": ["React", "Vite", "TypeScript", "jspdf", "bootstrap"]
