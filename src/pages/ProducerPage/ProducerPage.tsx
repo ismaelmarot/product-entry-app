@@ -6,6 +6,7 @@ import type { ProducerInfoProps } from '../../interface/ProducerInfoProps';
 import { useNavigate } from 'react-router-dom';
 import { useRef, useState, useEffect } from 'react';
 import SignatureCanvas from 'react-signature-canvas';
+import { SignatureBox } from './ProducerPage.styles';
 
 const schema = yup.object({
     first_name: yup.string().required("El nombre es obligatorio"),
@@ -112,14 +113,14 @@ function ProducerPage() {
 
                 <div className='col-12'>
                     <label className='form-label'>Firma digital (opcional)</label>
-                    <div style={{ border: '1px solid #ccc', borderRadius: 4 }}>
+                    <SignatureBox>
                         <SignatureCanvas
                             ref={sigCanvas}
                             penColor='black'
                             canvasProps={{ width: 500, height: 150, className: 'sigCanvas' }}
                             onEnd={() => setIsEmpty(false)}
                         />
-                    </div>
+                    </SignatureBox>
                     <button 
                         type='button' 
                         className='btn btn-sm btn-secondary mt-1' 
